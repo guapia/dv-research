@@ -50,8 +50,7 @@ namespace android.test {
                     animation_on.to = 1.3;
                     animation_on.fillAfter = true;
                     animation_on.id="mouseOn Animation ";
-                    console.log("=======> addAnimation on ")
-                    console.log("mouse on ");
+
                     this.startAnimation(animation_on);
                     
                     break;
@@ -63,8 +62,6 @@ namespace android.test {
                     animation_out.id="mouseOut Animation ";
                     
                     animation_out.fillAfter = false;
-                    console.log("=======> addAnimation out ")
-                    console.log("mouse out ");
                     this.startAnimation(animation_out);
                     break;
                 case MotionEvent.ACTION_MOUSE_MOVE:
@@ -116,19 +113,16 @@ namespace android.test {
                 // scale = scale - 1;
                 view.layoutInfo.innerrect.left = this.rect.left +(this.rect.width-this.rect.width *scale)/2;
                 view.layoutInfo.innerrect.width = this.rect.width *scale;
-                console.log( this.id+' width === ' + view.layoutInfo.innerrect.width +" scale " + scale +"  interpolatedTime "+interpolatedTime);
             }
         }
         onStartAniamtion(canvas: Canvas, view: View): void {
             // console.log("onStartAniamtion ");
             super.onStartAniamtion(canvas,view);
-            console.log("onStartAniamtion view Width " + view.layoutInfo.innerrect.width);
             
             this.rect = view.layoutInfo.innerrect.clone();
         }
         onEndAnimation(canvas: Canvas, view: View): void {
             super.onEndAnimation(canvas,view);
-            console.log("onEndAnimation view Width " + view.layoutInfo.innerrect.width);
             // view.layoutInfo.innerrect = this.rect;
             // console.log("onAnimationEnd " + view.layoutInfo.innerrect.width + "  ");
 

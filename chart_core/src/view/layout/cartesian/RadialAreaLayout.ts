@@ -42,6 +42,7 @@ namespace android.test.cartesian {
             }
             let linesShape: AreaShape = new AreaShape(this.context,xs, ys, null, Default.strokestyle);
             linesShape.style.background = ColorUtils.indexColor(series.index);
+            linesShape.id = series.id;
             this.__shapelist.push(linesShape);
 
         }

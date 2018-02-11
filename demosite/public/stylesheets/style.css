@@ -55,12 +55,13 @@ a {
     border: 1px solid #97B0F8;
 }
 .button{
-    width: 6%;
+    width: 70px;
     height: 50px;
     margin-top: 25%;
+
     text-align: center;
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 10px;
+    margin-right: 10px;
     font-size: 15px;
     color: white;
     background: lightblue;

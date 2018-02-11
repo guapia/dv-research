@@ -74,6 +74,8 @@ var geopath_func = function (data, chartlayout) {
 
 document.addEventListener('DOMContentLoaded', function () {
     var calculate_button = document.querySelector('#calculate_button');
+    var radial_btn = document.querySelector('#radial');
+    var stack_btn = document.querySelector('#stack');
     var chartcontainer = document.querySelector('#chart');
     var editor_left = ace.edit("chartmodel_layout");
     editor_left.setTheme("ace/theme/tomorrow");
@@ -86,9 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
     samples.push(new Node('simplebar', "cartesian", 'simplebar', cartesian_func));
     samples.push(new Node('multi-series-type', "cartesian", 'multi-series-type', cartesian_func));
     samples.push(new Node('TreeMap', "hierarchical", 'treemap', hierarchical_func));
-
     samples.push(new Node('Aggregation', "cartesian", 'aggregation', cartesian_func));
-
     samples.push(new Node('莆田系地址', "geo", 'putianxi', geo_func));
     samples.push(new Node('World', "geo", 'world', geo_func));
     samples.push(new Node('flight', "geopath", 'flight', geopath_func));
@@ -101,16 +101,12 @@ document.addEventListener('DOMContentLoaded', function () {
     samples.push(new Node('tan', "cartesian", 'tan', cartesian_func));
     samples.push(new Node('House Price in China', "cartesian", 'china_house', cartesian_func));
     samples.push(new Node('Pop in China', "cartesian", 'china_pop', cartesian_func));
-
     samples.push(new Node('linear', "cartesian", 'linear', cartesian_func));
     samples.push(new Node('Date', "cartesian", 'date', cartesian_func));
-
     // samples.push(new Node('TreeMap', "hierarchical", h_data,hierarchical_func));
     samples.push(new Node('SunBurst', "hierarchical", 'sunburst', hierarchical_func));
-
     samples.push(new Node('ChinaMap', "geo", 'geo_data_china', geo_func));
     samples.push(new Node('ChinaMap_pop', "geo", 'chinamap_pop', geo_func));
-
     samples.push(new Node('USAMap', "geo", 'geo_data_usa', geo_func));
 
     samples.forEach(node => {
@@ -150,6 +146,31 @@ document.addEventListener('DOMContentLoaded', function () {
             currentNode.chart = geopath_func(datamodel, currentNode.chart);
         }
 
+    };
+    radial_btn.onclick = function (event) {
+        var obj = JSON.parse(editor_left.getValue());
+        chartcontainer.innerHTML = '';
+        if (currentNode.desc == 'cartesian') {
+            if(obj.encoding.radial != null){
+                obj.encoding.radial = !obj.encoding.radial
+            }
+            currentNode.chart = cartesian_func(obj, currentNode.chart);
+            editor_left.setValue(JSON.stringify((obj), null, 4));
+
+        } 
+    };
+
+    stack_btn.onclick = function (event) {
+        var obj = JSON.parse(editor_left.getValue());
+        chartcontainer.innerHTML = '';
+        if (currentNode.desc == 'cartesian') {
+            if(obj.encoding.stack != null){
+                obj.encoding.stack = !obj.encoding.stack
+            }
+            currentNode.chart = cartesian_func((obj), currentNode.chart);
+            editor_left.setValue(JSON.stringify((obj), null, 4));
+
+        } 
     };
 
     currentNode = samples[0];

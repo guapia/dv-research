@@ -34,6 +34,7 @@ namespace android.test.cartesian{
             }
             let linesShape:LinesShape = new LinesShape(this.context,xs,ys,null,Default.strokestyle);
             linesShape.strokeStyle.strokeColor = ColorUtils.indexColor(series.index);
+            linesShape.id = series.id;
             this.__shapelist.push(linesShape);
             
         }

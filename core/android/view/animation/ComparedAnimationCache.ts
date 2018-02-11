@@ -15,12 +15,10 @@ namespace android {
         getPreparing():boolean{
             let p = this.__prepare;
             this.__prepare = false;
-            console.log("getPreparing   " + p);
             return p;
         }
         preparing():void{
             this.__prepare = true;
-            console.log('preparing ' + this.__prepare);
         }
         private _cache: any = {};
         public get isempty(): boolean {

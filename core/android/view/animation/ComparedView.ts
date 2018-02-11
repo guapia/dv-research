@@ -78,7 +78,6 @@ namespace android {
         }
         applyTransformation(interpolatedTime: number, canvas: Canvas, view: View) {
             if (view instanceof ComparedView) {
-                console.log('applyTransformation ' + view.id);
                 let scale: number = this.from + (this.to - this.from) * interpolatedTime;
                 let maxLen: number = Math.max(this.toXs.length, this.toYs.length, this.fromXs.length, this.fromYs.length);
                 let minLen: number = Math.min(this.toXs.length, this.toYs.length, this.fromXs.length, this.fromYs.length);
