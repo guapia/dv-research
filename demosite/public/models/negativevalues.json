@@ -1,0 +1,632 @@
+{
+    "filter": {
+        "series": "seriesA,seriesB,seriesD,seriesE,seriesC",
+        "rules": [
+            {
+                "express": "",
+                "field": ""
+            }
+        ]
+    },
+    "encoding": {
+        "x": {
+            "field": "country",
+            "band": true
+        },
+        "y": {
+            "field": "sales",
+            "type": "Linear"
+        },
+        "size": {
+            "field": "country",
+            "range": [
+                10,
+                20
+            ]
+        },
+        "tooltips": {
+            "field": "cases"
+        },
+        "shape": {
+            "field": ""
+        },
+        "angle": {
+            "field": "sales"
+        },
+        "stack": false,
+        "radial": false
+    },
+    "series": [
+        {
+            "name": "seriesA",
+            "charttype": "Area",
+            "style": {},
+            "data": [
+                {
+                    "country": "US",
+                    "downloads": 10,
+                    "sales": 2111110.6826381097,
+                    "expenses": 1380.5286353797196,
+                    "active": "false"
+                },
+                {
+                    "country": "Germany",
+                    "downloads": 7429,
+                    "sales": 21120.24411185354,
+                    "expenses": 2819.490334882582,
+                    "active": "false"
+                },
+                {
+                    "country": "UK",
+                    "downloads": 1616,
+                    "sales": 17111.72537459602,
+                    "expenses": 3774.1947931859045,
+                    "active": "false"
+                },
+                {
+                    "country": "Japan",
+                    "downloads": 18643,
+                    "sales": 21131.6371014867,
+                    "expenses": 2424.9636513659702,
+                    "active": "false"
+                },
+                {
+                    "country": "Italy",
+                    "downloads": 19949,
+                    "sales": 91111.9898790796,
+                    "expenses": 2983.639492172271,
+                    "active": "false"
+                },
+                {
+                    "country": "Greece",
+                    "downloads": 13505,
+                    "sales": 41226.89662437956,
+                    "expenses": 2264.6904213831076,
+                    "active": "false"
+                },
+                {
+                    "country": "label0",
+                    "downloads": -22825.522348338513,
+                    "sales": -11022.02893738935,
+                    "expenses": -27875.99602713148,
+                    "active": "false"
+                },
+                {
+                    "country": "label1",
+                    "downloads": -5565.406638829182,
+                    "sales": 6547.3121912255365,
+                    "expenses": -4692.6259505409425,
+                    "active": "false"
+                },
+                {
+                    "country": "label2",
+                    "downloads": -23008.28421415607,
+                    "sales": 4077.0877901082135,
+                    "expenses": -19605.875627057972,
+                    "active": "false"
+                },
+                {
+                    "country": "label3",
+                    "downloads": -10148.278061910025,
+                    "sales": -10733.24439046798,
+                    "expenses": -18628.869964880814,
+                    "active": "false"
+                },
+                {
+                    "country": "label4",
+                    "downloads": -7885.800549637398,
+                    "sales": 5705.433810110771,
+                    "expenses": -24772.074627079986,
+                    "active": "false"
+                },
+                {
+                    "country": "label5",
+                    "downloads": -24692.4573639128,
+                    "sales": 24786.174804253933,
+                    "expenses": -220.61452107142497,
+                    "active": "false"
+                },
+                {
+                    "country": "label6",
+                    "downloads": -19879.772247784837,
+                    "sales": -696.9293185543202,
+                    "expenses": -11310.21684208708,
+                    "active": "false"
+                },
+                {
+                    "country": "label7",
+                    "downloads": -26691.00310092073,
+                    "sales": -25154.105561681317,
+                    "expenses": -2230.404873164902,
+                    "active": "false"
+                },
+                {
+                    "country": "label8",
+                    "downloads": -22561.27658254173,
+                    "sales": -4051.197385719143,
+                    "expenses": -26961.86813459286,
+                    "active": "false"
+                },
+                {
+                    "country": "label9",
+                    "downloads": -28785.514904103275,
+                    "sales": -27215.761692549346,
+                    "expenses": -25385.518809805726,
+                    "active": "false"
+                }
+            ]
+        },
+        {
+            "name": "seriesB",
+            "charttype": "Bar",
+            "data": [
+                {
+                    "country": "US",
+                    "downloads": 80000,
+                    "sales": 19142.08042154179,
+                    "expenses": 2724.6397434553837,
+                    "active": "true"
+                },
+                {
+                    "country": "Germany",
+                    "downloads": 11540,
+                    "sales": 9780.104103590214,
+                    "expenses": 334.7053658699783,
+                    "active": "true"
+                },
+                {
+                    "country": "UK",
+                    "downloads": 12215,
+                    "sales": 4831.6539016051975,
+                    "expenses": 251.1643115886275,
+                    "active": "true"
+                },
+                {
+                    "country": "Japan",
+                    "downloads": 15327,
+                    "sales": 6740.375719832419,
+                    "expenses": 4974.962122643194,
+                    "active": "true"
+                },
+                {
+                    "country": "Italy",
+                    "downloads": 19767,
+                    "sales": 4287.620232395823,
+                    "expenses": 2074.331648946357,
+                    "active": "true"
+                },
+                {
+                    "country": "Greece",
+                    "downloads": 58,
+                    "sales": 4202.873874843627,
+                    "expenses": 487.29429967201423,
+                    "active": "true"
+                },
+                {
+                    "country": "label0",
+                    "downloads": -16699.328631763794,
+                    "sales": -23974.392214036594,
+                    "expenses": -10230.781670175933,
+                    "active": "false"
+                },
+                {
+                    "country": "label1",
+                    "downloads": -17283.14864313846,
+                    "sales": -25850.0714490187,
+                    "expenses": -22563.880235206896,
+                    "active": "false"
+                },
+                {
+                    "country": "label2",
+                    "downloads": -3105.274840754666,
+                    "sales": -81.49621949233409,
+                    "expenses": -18652.78817100803,
+                    "active": "false"
+                },
+                {
+                    "country": "label3",
+                    "downloads": -4152.676719218238,
+                    "sales": 10308.748014543264,
+                    "expenses": -6424.272576471905,
+                    "active": "false"
+                },
+                {
+                    "country": "label4",
+                    "downloads": -29018.47630507524,
+                    "sales": 23992.743957144718,
+                    "expenses": -11293.043215658514,
+                    "active": "false"
+                },
+                {
+                    "country": "label5",
+                    "downloads": -4988.760321852435,
+                    "sales": 12254.023506180092,
+                    "expenses": -17023.21407892425,
+                    "active": "false"
+                },
+                {
+                    "country": "label6",
+                    "downloads": -2701.915220203133,
+                    "sales": -24249.225623101476,
+                    "expenses": -18979.153895909403,
+                    "active": "false"
+                },
+                {
+                    "country": "label7",
+                    "downloads": -16435.163783076303,
+                    "sales": 24017.366018327528,
+                    "expenses": -29233.244727771053,
+                    "active": "false"
+                },
+                {
+                    "country": "label8",
+                    "downloads": -1541.2126438922446,
+                    "sales": -19164.08528771052,
+                    "expenses": -5948.192254715652,
+                    "active": "false"
+                },
+                {
+                    "country": "label9",
+                    "downloads": -324.8259999142045,
+                    "sales": -3980.9206825202305,
+                    "expenses": -1061.5716385397534,
+                    "active": "false"
+                }
+            ]
+        },
+        {
+            "charttype": "Scatter",
+            "name": "seriesC",
+            "data": [
+                {
+                    "country": "US",
+                    "downloads": 5157,
+                    "sales": 3327.682638109698,
+                    "expenses": 8380.52863537972,
+                    "active": "false"
+                },
+                {
+                    "country": "Germany",
+                    "downloads": 7429,
+                    "sales": 2397.244111853545,
+                    "expenses": 2819.490334882582,
+                    "active": "false"
+                },
+                {
+                    "country": "UK",
+                    "downloads": 1616,
+                    "sales": 9627.725374596032,
+                    "expenses": 3774.1947931859045,
+                    "active": "false"
+                },
+                {
+                    "country": "Japan",
+                    "downloads": 18643,
+                    "sales": 4531.63710148669,
+                    "expenses": 2424.9636513659702,
+                    "active": "false"
+                },
+                {
+                    "country": "Italy",
+                    "downloads": 19949,
+                    "sales": 9927.989879079592,
+                    "expenses": 2983.639492172271,
+                    "active": "false"
+                },
+                {
+                    "country": "Greece",
+                    "downloads": 13505,
+                    "sales": 526.8966243795559,
+                    "expenses": 2264.6904213831076,
+                    "active": "false"
+                },
+                {
+                    "country": "label0",
+                    "downloads": -21649.222910862423,
+                    "sales": 8546.287215832683,
+                    "expenses": -3442.162955090182,
+                    "active": "false"
+                },
+                {
+                    "country": "label1",
+                    "downloads": -17420.189832625547,
+                    "sales": -5157.573378361722,
+                    "expenses": -23207.077641613985,
+                    "active": "false"
+                },
+                {
+                    "country": "label2",
+                    "downloads": -28651.477480063757,
+                    "sales": -20952.521272667203,
+                    "expenses": -29865.808368898295,
+                    "active": "false"
+                },
+                {
+                    "country": "label3",
+                    "downloads": -17488.06547960045,
+                    "sales": -6781.551161530128,
+                    "expenses": -12709.197892841932,
+                    "active": "false"
+                },
+                {
+                    "country": "label4",
+                    "downloads": -4154.452382517995,
+                    "sales": -8847.30816136485,
+                    "expenses": -6695.87465031481,
+                    "active": "false"
+                },
+                {
+                    "country": "label5",
+                    "downloads": -5603.081577048266,
+                    "sales": 24176.70046354752,
+                    "expenses": -26779.492922099227,
+                    "active": "false"
+                },
+                {
+                    "country": "label6",
+                    "downloads": -3296.3941228046756,
+                    "sales": 23848.682233282645,
+                    "expenses": -5830.493364089233,
+                    "active": "false"
+                },
+                {
+                    "country": "label7",
+                    "downloads": -18470.95410183813,
+                    "sales": -5470.129396619077,
+                    "expenses": -23671.119755146097,
+                    "active": "false"
+                },
+                {
+                    "country": "label8",
+                    "downloads": -11985.332108887136,
+                    "sales": -27371.15937834505,
+                    "expenses": -17721.22519248963,
+                    "active": "false"
+                },
+                {
+                    "country": "label9",
+                    "downloads": -18148.77304203833,
+                    "sales": -28118.54093706069,
+                    "expenses": -27627.20862570765,
+                    "active": "false"
+                }
+            ]
+        },
+        {
+            "name": "seriesD",
+            "charttype": "Bar",
+            "data": [
+                {
+                    "country": "US",
+                    "downloads": 3157,
+                    "sales": 7327.682638109698,
+                    "expenses": 1380.5286353797196,
+                    "active": "false"
+                },
+                {
+                    "country": "Germany",
+                    "downloads": 7429,
+                    "sales": 2397.244111853545,
+                    "expenses": 2819.490334882582,
+                    "active": "false"
+                },
+                {
+                    "country": "UK",
+                    "downloads": 1616,
+                    "sales": 9627.725374596032,
+                    "expenses": 3774.1947931859045,
+                    "active": "false"
+                },
+                {
+                    "country": "Japan",
+                    "downloads": 18643,
+                    "sales": 4531.63710148669,
+                    "expenses": 2424.9636513659702,
+                    "active": "false"
+                },
+                {
+                    "country": "Italy",
+                    "downloads": 19949,
+                    "sales": 9927.989879079592,
+                    "expenses": 2983.639492172271,
+                    "active": "false"
+                },
+                {
+                    "country": "Greece",
+                    "downloads": 13505,
+                    "sales": 526.8966243795559,
+                    "expenses": 2264.6904213831076,
+                    "active": "false"
+                },
+                {
+                    "country": "label0",
+                    "downloads": -13225.076857834605,
+                    "sales": 24396.97065027263,
+                    "expenses": -25181.418318582433,
+                    "active": "false"
+                },
+                {
+                    "country": "label1",
+                    "downloads": -11081.176501989403,
+                    "sales": -24317.46699114566,
+                    "expenses": -25433.94238179501,
+                    "active": "false"
+                },
+                {
+                    "country": "label2",
+                    "downloads": -6397.521771928518,
+                    "sales": -5812.359697489326,
+                    "expenses": -19224.40900123457,
+                    "active": "false"
+                },
+                {
+                    "country": "label3",
+                    "downloads": -19618.51756039187,
+                    "sales": 24922.077998359004,
+                    "expenses": -27060.930881439443,
+                    "active": "false"
+                },
+                {
+                    "country": "label4",
+                    "downloads": -3399.401382369007,
+                    "sales": -2031.0105709756376,
+                    "expenses": -13643.717035329668,
+                    "active": "false"
+                },
+                {
+                    "country": "label5",
+                    "downloads": -21353.15703509352,
+                    "sales": 1351.556283179831,
+                    "expenses": -21921.995728383263,
+                    "active": "false"
+                },
+                {
+                    "country": "label6",
+                    "downloads": -15637.323308996478,
+                    "sales": -25592.145427955784,
+                    "expenses": -2759.9446745757473,
+                    "active": "false"
+                },
+                {
+                    "country": "label7",
+                    "downloads": -11666.388440993658,
+                    "sales": -13755.192061193686,
+                    "expenses": -17448.458505604187,
+                    "active": "false"
+                },
+                {
+                    "country": "label8",
+                    "downloads": -8608.141623828096,
+                    "sales": -3438.7886803202928,
+                    "expenses": -23309.58858709486,
+                    "active": "false"
+                },
+                {
+                    "country": "label9",
+                    "downloads": -15788.835601853683,
+                    "sales": 27866.595097669266,
+                    "expenses": -17536.87301174473,
+                    "active": "false"
+                }
+            ]
+        },
+        {
+            "name": "seriesE",
+            "charttype": "Bar",
+            "data": [
+                {
+                    "country": "US",
+                    "downloads": 80000,
+                    "sales": 19142.08042154179,
+                    "expenses": 2724.6397434553837,
+                    "active": "true"
+                },
+                {
+                    "country": "Germany",
+                    "downloads": 11540,
+                    "sales": 9780.104103590214,
+                    "expenses": 334.7053658699783,
+                    "active": "true"
+                },
+                {
+                    "country": "UK",
+                    "downloads": 12215,
+                    "sales": 4831.6539016051975,
+                    "expenses": 251.1643115886275,
+                    "active": "true"
+                },
+                {
+                    "country": "Japan",
+                    "downloads": 15327,
+                    "sales": 6740.375719832419,
+                    "expenses": 4974.962122643194,
+                    "active": "true"
+                },
+                {
+                    "country": "Italy",
+                    "downloads": 19767,
+                    "sales": 4287.620232395823,
+                    "expenses": 2074.331648946357,
+                    "active": "true"
+                },
+                {
+                    "country": "Greece",
+                    "downloads": 58,
+                    "sales": 4202.873874843627,
+                    "expenses": 487.29429967201423,
+                    "active": "true"
+                },
+                {
+                    "country": "label0",
+                    "downloads": -1788.759233825652,
+                    "sales": -26396.053598087532,
+                    "expenses": -7110.993843353983,
+                    "active": "false"
+                },
+                {
+                    "country": "label1",
+                    "downloads": -3554.0335073314177,
+                    "sales": -2595.0563264915518,
+                    "expenses": -12577.372425561418,
+                    "active": "false"
+                },
+                {
+                    "country": "label2",
+                    "downloads": -28952.599423073094,
+                    "sales": -19471.85137584433,
+                    "expenses": -1615.868521112185,
+                    "active": "false"
+                },
+                {
+                    "country": "label3",
+                    "downloads": -5136.106577834025,
+                    "sales": 26540.717187218095,
+                    "expenses": -15610.980926515755,
+                    "active": "false"
+                },
+                {
+                    "country": "label4",
+                    "downloads": -21479.101926629017,
+                    "sales": -21875.538830070844,
+                    "expenses": -15003.051461087418,
+                    "active": "false"
+                },
+                {
+                    "country": "label5",
+                    "downloads": -26588.08311741087,
+                    "sales": 25311.84397255757,
+                    "expenses": -11699.107027536651,
+                    "active": "false"
+                },
+                {
+                    "country": "label6",
+                    "downloads": -21851.993963643225,
+                    "sales": 22252.167745563733,
+                    "expenses": -19091.542058050894,
+                    "active": "false"
+                },
+                {
+                    "country": "label7",
+                    "downloads": -27167.3247222013,
+                    "sales": -26172.46231363323,
+                    "expenses": -1601.508771452178,
+                    "active": "false"
+                },
+                {
+                    "country": "label8",
+                    "downloads": -13360.662777960788,
+                    "sales": -7629.586446552492,
+                    "expenses": -14097.022026228067,
+                    "active": "false"
+                },
+                {
+                    "country": "label9",
+                    "downloads": -10756.819142604827,
+                    "sales": -15218.861076242298,
+                    "expenses": -15802.988427892706,
+                    "active": "false"
+                }
+            ]
+        }
+    ]
+}

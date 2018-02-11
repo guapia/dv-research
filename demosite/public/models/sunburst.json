@@ -1,0 +1,515 @@
+{
+    "encoding": {
+        "size": {
+            "field": "value"
+        },
+        "text": {
+            "field": "name"
+        },
+        "tooltips": {
+            "field": "path"
+        },
+        "children": {
+            "field": "children"
+        }
+    },
+    "charttype": "Sunburst",
+    "values": [
+        {
+            "value": 40,
+            "name": "Accessibility",
+            "path": "Accessibility"
+        },
+        {
+            "value": 180,
+            "name": "Accounts",
+            "path": "Accounts",
+            "children": [
+                {
+                    "value": 76,
+                    "name": "Access",
+                    "path": "Accounts/Access",
+                    "children": [
+                        {
+                            "value": 12,
+                            "name": "DefaultAccessPlugin.bundle",
+                            "path": "Accounts/Access/DefaultAccessPlugin.bundle"
+                        },
+                        {
+                            "value": 28,
+                            "name": "FacebookAccessPlugin.bundle",
+                            "path": "Accounts/Access/FacebookAccessPlugin.bundle"
+                        },
+                        {
+                            "value": 20,
+                            "name": "LinkedInAccessPlugin.bundle",
+                            "path": "Accounts/Access/LinkedInAccessPlugin.bundle"
+                        },
+                        {
+                            "value": 16,
+                            "name": "TencentWeiboAccessPlugin.bundle",
+                            "path": "Accounts/Access/TencentWeiboAccessPlugin.bundle"
+                        }
+                    ]
+                },
+                {
+                    "value": 92,
+                    "name": "Authentication",
+                    "path": "Accounts/Authentication",
+                    "children": [
+                        {
+                            "value": 24,
+                            "name": "FacebookAuthenticationPlugin.bundle",
+                            "path": "Accounts/Authentication/FacebookAuthenticationPlugin.bundle"
+                        },
+                        {
+                            "value": 16,
+                            "name": "LinkedInAuthenticationPlugin.bundle",
+                            "path": "Accounts/Authentication/LinkedInAuthenticationPlugin.bundle"
+                        },
+                        {
+                            "value": 20,
+                            "name": "TencentWeiboAuthenticationPlugin.bundle",
+                            "path": "Accounts/Authentication/TencentWeiboAuthenticationPlugin.bundle"
+                        },
+                        {
+                            "value": 16,
+                            "name": "TwitterAuthenticationPlugin.bundle",
+                            "path": "Accounts/Authentication/TwitterAuthenticationPlugin.bundle"
+                        },
+                        {
+                            "value": 16,
+                            "name": "WeiboAuthenticationPlugin.bundle",
+                            "path": "Accounts/Authentication/WeiboAuthenticationPlugin.bundle"
+                        }
+                    ]
+                },
+                {
+                    "value": 12,
+                    "name": "Notification",
+                    "path": "Accounts/Notification",
+                    "children": [
+                        {
+                            "value": 12,
+                            "name": "SPAAccountsNotificationPlugin.bundle",
+                            "path": "Accounts/Notification/SPAAccountsNotificationPlugin.bundle"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "value": 1904,
+            "name": "AddressBook Plug-Ins",
+            "path": "AddressBook Plug-Ins",
+            "children": [
+                {
+                    "value": 744,
+                    "name": "CardDAVPlugin.sourcebundle",
+                    "path": "AddressBook Plug-Ins/CardDAVPlugin.sourcebundle",
+                    "children": [
+                        {
+                            "value": 744,
+                            "name": "Contents",
+                            "path": "AddressBook Plug-Ins/CardDAVPlugin.sourcebundle/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 28,
+                    "name": "DirectoryServices.sourcebundle",
+                    "path": "AddressBook Plug-Ins/DirectoryServices.sourcebundle",
+                    "children": [
+                        {
+                            "value": 28,
+                            "name": "Contents",
+                            "path": "AddressBook Plug-Ins/DirectoryServices.sourcebundle/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 680,
+                    "name": "Exchange.sourcebundle",
+                    "path": "AddressBook Plug-Ins/Exchange.sourcebundle",
+                    "children": [
+                        {
+                            "value": 680,
+                            "name": "Contents",
+                            "path": "AddressBook Plug-Ins/Exchange.sourcebundle/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 432,
+                    "name": "LDAP.sourcebundle",
+                    "path": "AddressBook Plug-Ins/LDAP.sourcebundle",
+                    "children": [
+                        {
+                            "value": 432,
+                            "name": "Contents",
+                            "path": "AddressBook Plug-Ins/LDAP.sourcebundle/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 20,
+                    "name": "LocalSource.sourcebundle",
+                    "path": "AddressBook Plug-Ins/LocalSource.sourcebundle",
+                    "children": [
+                        {
+                            "value": 20,
+                            "name": "Contents",
+                            "path": "AddressBook Plug-Ins/LocalSource.sourcebundle/Contents"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "value": 36,
+            "name": "Assistant",
+            "path": "Assistant",
+            "children": [
+                {
+                    "value": 36,
+                    "name": "Plugins",
+                    "path": "Assistant/Plugins",
+                    "children": [
+                        {
+                            "value": 36,
+                            "name": "AddressBook.assistantBundle",
+                            "path": "Assistant/Plugins/AddressBook.assistantBundle"
+                        },
+                        {
+                            "value": 8,
+                            "name": "GenericAddressHandler.addresshandler",
+                            "path": "Recents/Plugins/GenericAddressHandler.addresshandler"
+                        },
+                        {
+                            "value": 12,
+                            "name": "MapsRecents.addresshandler",
+                            "path": "Recents/Plugins/MapsRecents.addresshandler"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "value": 53228,
+            "name": "Automator",
+            "path": "Automator",
+            "children": [
+                {
+                    "value": 0,
+                    "name": "StartCapture.action",
+                    "path": "Automator/StartCapture.action",
+                    "children": [
+                        {
+                            "value": 0,
+                            "name": "Contents",
+                            "path": "Automator/StartCapture.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 8,
+                    "name": "StartiTunes Playing.action",
+                    "path": "Automator/StartiTunes Playing.action",
+                    "children": [
+                        {
+                            "value": 8,
+                            "name": "Contents",
+                            "path": "Automator/StartiTunes Playing.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 8,
+                    "name": "StartiTunes Visuals.action",
+                    "path": "Automator/StartiTunes Visuals.action",
+                    "children": [
+                        {
+                            "value": 8,
+                            "name": "Contents",
+                            "path": "Automator/StartiTunes Visuals.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 16,
+                    "name": "StartKeynote Slideshow.action",
+                    "path": "Automator/StartKeynote Slideshow.action",
+                    "children": [
+                        {
+                            "value": 16,
+                            "name": "Contents",
+                            "path": "Automator/StartKeynote Slideshow.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 8,
+                    "name": "StartScreen Saver.action",
+                    "path": "Automator/StartScreen Saver.action",
+                    "children": [
+                        {
+                            "value": 8,
+                            "name": "Contents",
+                            "path": "Automator/StartScreen Saver.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 0,
+                    "name": "StopCapture.action",
+                    "path": "Automator/StopCapture.action",
+                    "children": [
+                        {
+                            "value": 0,
+                            "name": "Contents",
+                            "path": "Automator/StopCapture.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 8,
+                    "name": "StopDVD Playback.action",
+                    "path": "Automator/StopDVD Playback.action",
+                    "children": [
+                        {
+                            "value": 8,
+                            "name": "Contents",
+                            "path": "Automator/StopDVD Playback.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 8,
+                    "name": "StopiTunes Visuals.action",
+                    "path": "Automator/StopiTunes Visuals.action",
+                    "children": [
+                        {
+                            "value": 8,
+                            "name": "Contents",
+                            "path": "Automator/StopiTunes Visuals.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 8,
+                    "name": "StopKeynote Slideshow.action",
+                    "path": "Automator/StopKeynote Slideshow.action",
+                    "children": [
+                        {
+                            "value": 8,
+                            "name": "Contents",
+                            "path": "Automator/StopKeynote Slideshow.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 28,
+                    "name": "SystemProfile.action",
+                    "path": "Automator/SystemProfile.action",
+                    "children": [
+                        {
+                            "value": 28,
+                            "name": "Contents",
+                            "path": "Automator/SystemProfile.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 276,
+                    "name": "TakePicture.action",
+                    "path": "Automator/TakePicture.action",
+                    "children": [
+                        {
+                            "value": 276,
+                            "name": "Contents",
+                            "path": "Automator/TakePicture.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 420,
+                    "name": "TakeScreenshot.action",
+                    "path": "Automator/TakeScreenshot.action",
+                    "children": [
+                        {
+                            "value": 420,
+                            "name": "Contents",
+                            "path": "Automator/TakeScreenshot.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 20,
+                    "name": "TakeVideo Snapshot.action",
+                    "path": "Automator/TakeVideo Snapshot.action",
+                    "children": [
+                        {
+                            "value": 20,
+                            "name": "Contents",
+                            "path": "Automator/TakeVideo Snapshot.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 100,
+                    "name": "Textto Audio File.action",
+                    "path": "Automator/Textto Audio File.action",
+                    "children": [
+                        {
+                            "value": 100,
+                            "name": "Contents",
+                            "path": "Automator/Textto Audio File.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 436,
+                    "name": "Textto EPUB File.action",
+                    "path": "Automator/Textto EPUB File.action",
+                    "children": [
+                        {
+                            "value": 436,
+                            "name": "Contents",
+                            "path": "Automator/Textto EPUB File.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 8,
+                    "name": "UpdateiPod.action",
+                    "path": "Automator/UpdateiPod.action",
+                    "children": [
+                        {
+                            "value": 8,
+                            "name": "Contents",
+                            "path": "Automator/UpdateiPod.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 264,
+                    "name": "ValidateFont Files.action",
+                    "path": "Automator/ValidateFont Files.action",
+                    "children": [
+                        {
+                            "value": 264,
+                            "name": "Contents",
+                            "path": "Automator/ValidateFont Files.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 272,
+                    "name": "ViewResults.action",
+                    "path": "Automator/ViewResults.action",
+                    "children": [
+                        {
+                            "value": 272,
+                            "name": "Contents",
+                            "path": "Automator/ViewResults.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 64,
+                    "name": "Waitfor User Action.action",
+                    "path": "Automator/Waitfor User Action.action",
+                    "children": [
+                        {
+                            "value": 64,
+                            "name": "Contents",
+                            "path": "Automator/Waitfor User Action.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 456,
+                    "name": "WatchMe Do.action",
+                    "path": "Automator/WatchMe Do.action",
+                    "children": [
+                        {
+                            "value": 456,
+                            "name": "Contents",
+                            "path": "Automator/WatchMe Do.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 72,
+                    "name": "WatermarkPDF Documents.action",
+                    "path": "Automator/WatermarkPDF Documents.action",
+                    "children": [
+                        {
+                            "value": 72,
+                            "name": "Contents",
+                            "path": "Automator/WatermarkPDF Documents.action/Contents"
+                        }
+                    ]
+                },
+                {
+                    "value": 80,
+                    "name": "WebsitePopup.action",
+                    "path": "Automator/WebsitePopup.action",
+                    "children": [
+                        {
+                            "value": 80,
+                            "name": "Contents",
+                            "path": "Automator/WebsitePopup.action/Contents"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "value": 2868,
+            "name": "BridgeSupport",
+            "path": "BridgeSupport",
+            "children": [
+                {
+                    "value": 0,
+                    "name": "include",
+                    "path": "BridgeSupport/include"
+                },
+                {
+                    "value": 2840,
+                    "name": "ruby-2.0",
+                    "path": "BridgeSupport/ruby-2.0"
+                }
+            ]
+        },
+        {
+            "value": 21988,
+            "name": "Caches",
+            "path": "Caches",
+            "children": [
+                {
+                    "value": 2296,
+                    "name": "com.apple.CVMS",
+                    "path": "Caches/com.apple.CVMS"
+                },
+                {
+                    "value": 19048,
+                    "name": "com.apple.kext.caches",
+                    "path": "Caches/com.apple.kext.caches",
+                    "children": [
+                        {
+                            "value": 12,
+                            "name": "Directories",
+                            "path": "Caches/com.apple.kext.caches/Directories"
+                        },
+                        {
+                            "value": 19036,
+                            "name": "Startup",
+                            "path": "Caches/com.apple.kext.caches/Startup"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
