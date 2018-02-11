@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var sample_item_container = document.querySelector('#sample_item_container');
     // samples.push(new Node('USAMap1', "geo", geo_data_usa1,geo_func));
     // samples.push(new Node('WorldMap', "geo", geo_data_world,geo_func));
+    samples.push(new Node('simplebar', "cartesian", 'simplebar', cartesian_func));
     samples.push(new Node('multi-series-type', "cartesian", 'multi-series-type', cartesian_func));
     samples.push(new Node('TreeMap', "hierarchical", 'treemap', hierarchical_func));
 

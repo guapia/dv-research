@@ -31,11 +31,11 @@ gulp.task('default', function () {
 
 
         tsResult.dts.pipe(gulp.dest('../demosite/public/javascripts/')),
-        tsResult.js.pipe(sourcemaps.write())
-        .pipe(gulp.dest('')),
+        // tsResult.js.pipe(sourcemaps.write())
+        // .pipe(gulp.dest('')),
         tsResult.js
         // .pipe(sourcemaps.write())
-        // .pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest('../demosite/public/javascripts/')),
 
 
