@@ -217,24 +217,12 @@ namespace android.test.cartesian {
                     this._layoutYAxis(canvas);
                 }
             }
-            // if(this._children !=null){
-            //     for(let child of this._children){
-            //         if(child instanceof AxisShape){
-            //             child.onLayout(child._lableRect.leftTop.x,child._lableRect.leftTop.y,child._lableRect.width,child._lableRect.height,canvas);
-            //             child.id = Util.HashCode(Util.HashCode(child._label) + Util.HashCode(this.id));
-            //         }
-            //     }
-            // }
+            this._overLapLabels();
         }
 
         onDraw(canvas: Canvas): void {
             super.onDraw(canvas);
             this._drawLine(canvas);
-            // if (this._children != null) {
-            //     for (let shape of this._children) {
-            //         shape.onDraw(canvas);
-            //     }
-            // }
         }
         private _drawLine(canvas: Canvas): void {
             let rect: Rect = this.layoutInfo.innerrect;

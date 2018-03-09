@@ -16,6 +16,7 @@ namespace android.test.cartesian{
     import StrokeStyle= android.graphics.StrokeStyle;
     import Gravity = android.graphics.Gravity;
     import ViewGroup = android.view.ViewGroup;
+    import ViewState= android.view.ViewState;
 
     export abstract class BaseAxis extends ViewGroup{
         
@@ -24,7 +25,7 @@ namespace android.test.cartesian{
         private _min:number;
         private _reversed:boolean;
         private _series:string[];
-        protected _children:Shape[];
+        // protected _children:Shape[];
         protected _majorTickHeight:number;
         protected _minorTickHeight:number
         protected _axisType:AxisType;
@@ -154,7 +155,21 @@ namespace android.test.cartesian{
 
         abstract _layoutXAxis(canvas:Canvas):void;
         abstract _layoutYAxis(canvas:Canvas):void;
-
+        protected _overLapLabels():void{
+            for(let i = 0; i <this.children.length; ++i){
+                let child = this.children[i];
+                if(child instanceof AxisShape && child.visiable == ViewState.Visiable){
+                    for(let j = i; j < this.children.length; ++j){
+                        let comparechild = this.children[j];
+                        if(comparechild instanceof AxisShape && comparechild.visiable == ViewState.Visiable){
+                            if(Utility.isMixedRotatedRect(comparechild._lableRect,child._lableRect)){
+                                // comparechild.visiable = ViewState.Gone;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size{
             return super.onMeasure(width,height,canvas);

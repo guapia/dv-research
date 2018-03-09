@@ -13,6 +13,7 @@ namespace android.test.cartesian {
     import LayoutParams = android.view.LayoutParams;
     import Point = android.graphics.Point;
     import Default = android.device.Default;
+    import Util = android.graphics.Util;
     export class RadialLineAxis extends BaseAxis {
         private __innerRadius: number = 0;
         private __startAngle: number = 0;
@@ -89,6 +90,14 @@ namespace android.test.cartesian {
             return this.__sweep;
         }
 
+        private _id:string;
+        get id():string{
+            if(this._id== null){
+                this._id = Util.HashCode(Util.HashCode(this._axisType)+ Util.HashCode(this.near) + Util.HashCode(this.title));
+                // this._id = (this._axisType)+","+ (this.near) +","+ (this.title);
+            }
+            return this._id;
+        }
 
 
         protected _createTicks(): any[] {
@@ -106,7 +115,7 @@ namespace android.test.cartesian {
         }
         _layoutXAxis(canvas: Canvas): void {
             let ticks = this._ticks;
-            this._children = [];
+            this.removeAllViews();
             for (let i = 0; ticks && i < ticks.length; ++i) {
                 let value: number = ticks[i];
                 let nextValue: number = i >= ticks.length ? null : ticks[i + 1];
@@ -136,6 +145,8 @@ namespace android.test.cartesian {
                 shape._lableFont = this._labelFont;
                 shape._major = this.majorStyle;
                 shape._minor = this.minorStyle;
+                shape.id = Util.HashCode(label+","+this.id);
+
                 let minorx = NaN;
                 let minory = NaN;
 
@@ -147,13 +158,15 @@ namespace android.test.cartesian {
                     minory = this._cy + Math.sin(this._startAngle) * minorRadius;
                 }
                 shape._minorTick = new RotateLine(minorx, minory, this._minorTickHeight, 0, this._startAngle);
-                this._children.push(shape);
+
+                this.addViewWithOutReLayout(shape);
             }
         }
 
         _layoutYAxis(canvas: Canvas): void {
             let ticks = this._ticks;
-            this._children = [];
+            // this._children = [];
+            this.removeAllViews();
             for (let i = 0; ticks && i < ticks.length; ++i) {
                 let value: number = ticks[i];
 
@@ -184,6 +197,8 @@ namespace android.test.cartesian {
                 shape._lableFont = this.labelFont;
                 shape._major = this.majorStyle;
                 shape._minor = this.minorStyle;
+                shape.id = Util.HashCode(label+","+this.id);
+
                 let minory: number = NaN;
                 let minorx: number = NaN;
                 let minorAngle: number = NaN;
@@ -195,7 +210,8 @@ namespace android.test.cartesian {
 
                 }
                 shape._minorTick = new RotateLine(minorx, minory, this._minorTickHeight, 0, minorAngle - Math.PI / 2);
-                this._children.push(shape);
+                // this._children.push(shape);
+                this.addViewWithOutReLayout(shape);
             }
         }
 
@@ -249,16 +265,17 @@ namespace android.test.cartesian {
                     this._layoutYAxis(canvas);
                 }
             }
+            this._overLapLabels();
         }
 
         onDraw(canvas: Canvas): void {
             super.onDraw(canvas);
             this._drawLine(canvas);
-            if (this._children != null) {
-                for (let shape of this._children) {
-                    shape.onDraw(canvas);
-                }
-            }
+            // if (this._children != null) {
+            //     for (let shape of this._children) {
+            //         shape.onDraw(canvas);
+            //     }
+            // }
         }
         private _drawLine(canvas: Canvas): void {
             let rect: Rect = this.layoutInfo.innerrect;
@@ -272,7 +289,8 @@ namespace android.test.cartesian {
             } else if (this._axisType == AxisType.Y) {
                 let s = Default.style;
                 s.strokeStyle =this.lineStyle;
-                canvas.drawDonut(this._cx, this._cy, this._radius, this._radius - this.lineStyle.strokeWidth, this._startAngle / Math.PI * 180, this._sweep * 180 / Math.PI, s);
+                // canvas.drawDonut(this._cx, this._cy, this._radius, this._radius - this.lineStyle.strokeWidth, this._startAngle , this._sweep , s);
+                canvas.drawArc(new Rect(this._cx-this._radius,this._cy-this._radius,this._radius+this._cx,this._radius+this._cy),this._startAngle,this._sweep,s);
             }
         }
 

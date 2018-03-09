@@ -206,7 +206,12 @@ module android.graphics {
             this._canvas2d.arc(cx, cy, r, startAngle, startAngle + sweepAngle);
             this._canvas2d.lineTo(cx, cy);
             this._canvas2d.closePath();
-            this._canvas2d.fill();
+            if(style.background != null ){
+                this._canvas2d.fill();
+            }
+            if(style.strokeStyle != null){
+                this._canvas2d.stroke();
+            }
             this._canvas2d.rotate(startAngle);
             this._canvas2d.restore();
 

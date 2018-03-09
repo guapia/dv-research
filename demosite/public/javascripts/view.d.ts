@@ -1023,7 +1023,6 @@ declare namespace android.test.cartesian {
         private _min;
         private _reversed;
         private _series;
-        protected _children: Shape[];
         protected _majorTickHeight: number;
         protected _minorTickHeight: number;
         protected _axisType: AxisType;
@@ -1052,6 +1051,7 @@ declare namespace android.test.cartesian {
         near: boolean;
         abstract _layoutXAxis(canvas: Canvas): void;
         abstract _layoutYAxis(canvas: Canvas): void;
+        protected _overLapLabels(): void;
         onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size;
         onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void;
         onDraw(canvas: Canvas): void;
@@ -1100,6 +1100,8 @@ declare namespace android.test.cartesian {
         _innerRadius: number;
         _startAngle: number;
         _sweep: number;
+        private _id;
+        readonly id: string;
         protected _createTicks(): any[];
         _layoutXAxis(canvas: Canvas): void;
         _layoutYAxis(canvas: Canvas): void;
@@ -1585,6 +1587,8 @@ declare namespace android.test.map {
     }
 }
 declare namespace android.test {
+}
+declare namespace android.test {
     import StrokeStyle = android.graphics.StrokeStyle;
     import FillStyle = android.graphics.FillStyle;
     import Font = android.graphics.Font;
@@ -1602,8 +1606,6 @@ declare namespace android.test {
         translate: Point;
         constructor(config: any);
     }
-}
-declare namespace android.test {
 }
 declare namespace android.test {
     class EventHandler {
