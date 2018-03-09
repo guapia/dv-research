@@ -37,7 +37,6 @@ namespace android.test.cartesian{
                     if(isNaN(s) || s == null || s <=0){
                         s = defaultsize;
                     }
-                    console.log("radius " + radius +" angle " + angle );
                     
                     let color = defaultcolor;
                     if(colorScale instanceof OrdinalScale){
@@ -49,6 +48,7 @@ namespace android.test.cartesian{
                     let x = this._cx + Math.cos(angle) * radius;
                     let y = this._cy + Math.sin(angle) * radius;
                     let scatterShape :ScatterShape = new ScatterShape(this.context,x-s/2,y-s/2,s,s,Default.style);
+                    scatterShape.id = pt.id;
                     if(color != null){
                         scatterShape.style.background = color;
                     }else {

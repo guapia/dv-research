@@ -20,12 +20,12 @@ gulp.task('default', function () {
         }));
 
     return merge([
-        // tsResult.dts.pipe(gulp.dest('')),
+        tsResult.dts.pipe(gulp.dest('')),
         tsResult.dts.pipe(gulp.dest('../chart_core/dst/')),
         tsResult.js.pipe(sourcemaps.write())
         .pipe(gulp.dest('')),
         tsResult.js
-        // .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write())
         // .pipe(uglify())
         .pipe(gulp.dest('../chart_core/dst/')),
 
@@ -35,7 +35,7 @@ gulp.task('default', function () {
         // .pipe(gulp.dest('')),
         tsResult.js
         // .pipe(sourcemaps.write())
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest('../demosite/public/javascripts/')),
 
 

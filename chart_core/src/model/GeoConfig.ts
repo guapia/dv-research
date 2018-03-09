@@ -8,7 +8,7 @@ namespace android.test{
     import Font = android.graphics.Font;
     import Point = android.graphics.Point;
 
-    export class Config{
+    export class GeoConfig{
         symbolStyle:FillStyle;
         lineSeriesStyle:StrokeStyle;
         areaSeriesStyle:FillStyle;

@@ -191,7 +191,7 @@ namespace android.test.cartesian {
                 let shape = this.children[i];
                 if (shape instanceof ScatterShape) {
                     setTimeout(() => {
-                        console.log("index  " + i);
+                        // console.log("index  " + i);
                         let animation: ScatterAnimation = new ScatterAnimation(null);
                         animation.duration = 500;
                         animation.from = 0.2;

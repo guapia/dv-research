@@ -35,7 +35,7 @@ gulp.task('default', function () {
         // .pipe(gulp.dest('')),
         tsResult.js
         // .pipe(sourcemaps.write())
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest('../demosite/public/javascripts/')),
 
 

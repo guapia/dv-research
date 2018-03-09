@@ -43,6 +43,8 @@ namespace android {
             for (let view of views) {
                 currentCache[view.id] = view;
             }
+            console.log(this._cache);
+            console.log(currentCache);
             if (!this.isempty) {
                 for (let key in currentCache) {
                     let fromview = this._cache[key];

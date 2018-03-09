@@ -96,7 +96,6 @@ namespace android.widget {
                 this.__traceView(this, list);
                 comparedCache.resetCache(list);
                 comparedCache.preparing();
-
             }
         }
 

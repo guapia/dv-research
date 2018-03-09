@@ -7,6 +7,7 @@ module android.graphics {
     import Point = android.graphics.Point;
     import Font = android.graphics.Font;
     import StrokeStyle = android.graphics.StrokeStyle;
+
     /**
      * Render to canvas.
      */
@@ -21,8 +22,8 @@ module android.graphics {
         constructor(element: HTMLElement) {
             this._element = element;
             this._create();
-
         }
+        
         get canvas(): CanvasRenderingContext2D {
             return this._canvas2d;
         }
@@ -237,14 +238,6 @@ module android.graphics {
         }
 
         drawString(s: string, pt: Point, font: Font) {
-            // if (font) {
-            //     this._canvas2d.font = font.fontSize + 'px ' + font.fontFamily;
-            //     var gradient = this._canvas2d.createLinearGradient(0, 0, this._canvas.width, 0);
-            //     if (font.fontColor) {
-            //         gradient.addColorStop(1.0, font.fontColor);
-            //         this._canvas2d.fillStyle = gradient;
-            //     }
-            // }
             this._canvas2d.save();
             this._applyFont(font);
             this._canvas2d.fillText(s, pt.x, pt.y);

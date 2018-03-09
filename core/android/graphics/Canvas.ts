@@ -38,6 +38,7 @@ namespace android.graphics {
         private xOffset: number = 0;
         private yOffset: number = 0;
         private saveStates: CanvasState[] = [];
+        private 
 
         constructor(element: HTMLElement, type: RenderType) {
             this._hostElement = element;

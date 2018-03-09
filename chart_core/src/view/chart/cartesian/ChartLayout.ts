@@ -38,8 +38,6 @@ namespace android.test.cartesian {
             let handler :Handler = new Handler((msg:Message)=>{
                 let types:ElementType =msg.args['types'];
                 let info:any = msg.args['info'];
-                // let pt 
-                console.log(" " +  ", type " + types + " , info " + info);
                     if (types == ElementType.SeriesLegend) {
                         let series: string[] = this._dataModel.filter.series;
                         let index: number = series.indexOf(info.series);
@@ -64,32 +62,6 @@ namespace android.test.cartesian {
                     }
             });
             context.setArgs(EventMessage,handler);
-
-            // let EventHandler = (pt: Point, types: ElementType, info: any) => {
-            //     console.log(" " + pt.toString() + ", type " + types + " , info " + info);
-            //     if (types == ElementType.SeriesLegend) {
-            //         let series: string[] = this._dataModel.filter.series;
-            //         let index: number = series.indexOf(info.series);
-            //         if (info.action === 'enableseries') {
-            //             if (info.enable) {
-            //                 if (index > -1) {
-            //                     this._dataModel.filter.series.splice(index, 1);
-            //                 }
-            //             } else {
-            //                 if (index < 0) {
-            //                     this._dataModel.filter.series.push(info.series);
-            //                 }
-            //             }
-
-            //             this._dataModel.refresh();
-            //             this.setChart();
-
-            //         } else if (info.action === 'showlabel') {
-            //             this.requestLayout();
-            //         }
-            //     }
-            // }
-            // window['EventHandler'] = EventHandler;
         }
 
         attachElement(element: HTMLElement, renderType:RenderType,datamodel?: DataModel,update?:boolean) {

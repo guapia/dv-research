@@ -33,7 +33,7 @@ declare namespace android.test {
         width: number;
         height: number;
         points: Point[];
-        constructor(centerx: number, centery: number, width: number, height: number, angle: number);
+        constructor(centerx?: number, centery?: number, width?: number, height?: number, angle?: number);
         readonly raidius: number;
         offset(x: number, y: number, angle: number): void;
         readonly leftTop: Point;
@@ -44,6 +44,7 @@ declare namespace android.test {
         readonly centerBottom: Point;
         readonly center: Point;
         readonly startPoint: Point;
+        clone(): RotateRect;
     }
     class RotateLine {
         startPoint: Point;
@@ -997,6 +998,11 @@ declare namespace android.test {
         _showLabel: boolean;
         constructor(context: Context);
         onDrawShape(canvas: Canvas): void;
+        protected _drawAnimation(canvas: Canvas): void;
+        getpts(size: number): {
+            xs: number[];
+            ys: number[];
+        };
         refresh(): void;
     }
 }
@@ -1061,6 +1067,7 @@ declare namespace android.test.cartesian {
         private _maxLabelSize;
         constructor(context: Context);
         near: boolean;
+        private _id;
         readonly id: string;
         protected _createTicks(): any[];
         _layoutXAxis(canvas: Canvas): void;
@@ -1450,7 +1457,7 @@ declare namespace android.test.map {
         featureList: Feature[];
         projection: Projection;
         constructor(data: any);
-        readonly config: Config;
+        readonly config: GeoConfig;
         private _analyseEncoding(encode);
         refresh(): void;
         readonly chartTypes: ChartType[];
@@ -1508,7 +1515,7 @@ declare namespace android.test.map.relation {
         projection: Projection;
         private _points;
         readonly points: Item[];
-        readonly config: Config;
+        readonly config: GeoConfig;
         constructor(data: any);
         private _analysePathValue(data_arr);
         private _analyseEncoding(encode);
@@ -1582,7 +1589,7 @@ declare namespace android.test {
     import FillStyle = android.graphics.FillStyle;
     import Font = android.graphics.Font;
     import Point = android.graphics.Point;
-    class Config {
+    class GeoConfig {
         symbolStyle: FillStyle;
         lineSeriesStyle: StrokeStyle;
         areaSeriesStyle: FillStyle;
@@ -1595,6 +1602,8 @@ declare namespace android.test {
         translate: Point;
         constructor(config: any);
     }
+}
+declare namespace android.test {
 }
 declare namespace android.test {
     class EventHandler {

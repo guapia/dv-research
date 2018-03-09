@@ -62,6 +62,7 @@ namespace android.test.cartesian{
                     }else {
                         scatterShape.style.background = defaultcolor;
                     }
+                    scatterShape.id = pt.id;
                     if(series.showlabels && text != null){
                         let textstr :string= text.value;
                         let font = Default.font;

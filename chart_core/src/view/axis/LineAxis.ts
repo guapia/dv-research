@@ -21,6 +21,9 @@ namespace android.test.cartesian {
             super(context);
             this._maxLabelSize = new Size(0, 0);
         }
+        // protected get children():Array<View>{
+        //     return this._children;
+        // }
 
         set near(value: boolean) {
             this._near = value;
@@ -38,8 +41,13 @@ namespace android.test.cartesian {
                 }
             }
         }
+        private _id:string;
         get id():string{
-            return Util.HashCode(Util.HashCode(this._axisType)+ Util.HashCode(this.near) + Util.HashCode(this.title));
+            if(this._id== null){
+                this._id = Util.HashCode(Util.HashCode(this._axisType)+ Util.HashCode(this.near) + Util.HashCode(this.title));
+                // this._id = (this._axisType)+","+ (this.near) +","+ (this.title);
+            }
+            return this._id;
         }
 
         get near(): boolean {
@@ -64,7 +72,8 @@ namespace android.test.cartesian {
         }
         _layoutXAxis(canvas: Canvas): void {
             let ticks = this._ticks;
-            this._children = [];
+            // this._children = [];
+            this.removeAllViews();
             let lastShape: AxisShape;
             for (let i = 0; ticks && i < ticks.length; ++i) {
                 let value: number = ticks[i];
@@ -89,6 +98,8 @@ namespace android.test.cartesian {
                 shape._lableFont = this._labelFont;
                 shape._major = this.majorStyle;
                 shape._minor = this.minorStyle;
+                shape.id = Util.HashCode(label+","+this.id);
+                // shape.id = label+","+this.id;
                 let minorx = NaN;
                 if (!isNaN(nx)) {
                     minorx = (x + nx) / 2;
@@ -102,13 +113,15 @@ namespace android.test.cartesian {
                     shape._showLabel = true;
                     lastShape = shape;
                 }
-                this._children.push(shape);
+                // this._children.push(shape);
+                this.addViewWithOutReLayout(shape);
             }
         }
 
         _layoutYAxis(canvas: Canvas): void {
             let ticks = this._ticks;
-            this._children = [];
+            // this._children = [];
+            this.removeAllViews();
             for (let i = 0; ticks && i < ticks.length; ++i) {
                 let value: number = ticks[i];
 
@@ -139,13 +152,15 @@ namespace android.test.cartesian {
                 shape._lableFont = this.labelFont;
                 shape._major = this.majorStyle;
                 shape._minor = this.minorStyle;
+                shape.id = Util.HashCode(label+","+this.id);
                 let minory = NaN;
                 if (!isNaN(ny)) {
                     minory = (y + ny) / 2;
 
                 }
                 shape._minorTick = new RotateLine(x, minory, this._minorTickHeight, 0, this.near ? Math.PI / 2 : -Math.PI / 2);
-                this._children.push(shape);
+                // this._children.push(shape);
+                this.addViewWithOutReLayout(shape);
             }
         }
 
@@ -202,24 +217,24 @@ namespace android.test.cartesian {
                     this._layoutYAxis(canvas);
                 }
             }
-            if(this._children !=null){
-                for(let child of this._children){
-                    if(child instanceof AxisShape){
-                        child.onLayout(child._lableRect.leftTop.x,child._lableRect.leftTop.y,child._lableRect.width,child._lableRect.height,canvas);
-                        child.id = Util.HashCode(Util.HashCode(child._label) + Util.HashCode(this.id));
-                    }
-                }
-            }
+            // if(this._children !=null){
+            //     for(let child of this._children){
+            //         if(child instanceof AxisShape){
+            //             child.onLayout(child._lableRect.leftTop.x,child._lableRect.leftTop.y,child._lableRect.width,child._lableRect.height,canvas);
+            //             child.id = Util.HashCode(Util.HashCode(child._label) + Util.HashCode(this.id));
+            //         }
+            //     }
+            // }
         }
 
         onDraw(canvas: Canvas): void {
             super.onDraw(canvas);
             this._drawLine(canvas);
-            if (this._children != null) {
-                for (let shape of this._children) {
-                    shape.onDraw(canvas);
-                }
-            }
+            // if (this._children != null) {
+            //     for (let shape of this._children) {
+            //         shape.onDraw(canvas);
+            //     }
+            // }
         }
         private _drawLine(canvas: Canvas): void {
             let rect: Rect = this.layoutInfo.innerrect;

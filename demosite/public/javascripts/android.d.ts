@@ -265,6 +265,7 @@ declare namespace android.graphics {
         private xOffset;
         private yOffset;
         private saveStates;
+        private: any;
         constructor(element: HTMLElement, type: RenderType);
         clearRect(left: number, top: number, width: number, height: number): void;
         save(): void;
@@ -821,6 +822,12 @@ declare namespace android {
         static assert(flg?: boolean, log?: string): void;
         static logstack(log: any): void;
         static log(log: any): void;
+    }
+}
+declare namespace android.graphics {
+    class Layer {
+        private __index;
+        constructor(layerindex: number);
     }
 }
 declare module android.graphics {

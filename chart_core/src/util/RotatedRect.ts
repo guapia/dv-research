@@ -10,50 +10,51 @@ namespace android.test {
         public width: number;
         public height: number;
         public points: Point[];
-        constructor(centerx: number, centery: number, width: number, height: number, angle: number) {
-            this.angle = angle;
-            this.centerx = centerx;
-            this.centery = centery;
-            this.width = width;
-            this.height = height;
-            this.points = [new Point(), new Point(), new Point(), new Point(), new Point(), new Point(), new Point(), new Point(), new Point()];
-            let lt = this.points[0];
-            let rt = this.points[1];
-            let rb = this.points[2];
-            let lb = this.points[3];
-            let ct = this.points[4];
-            let cb = this.points[5];
+        constructor(centerx?: number, centery?: number, width?: number, height?: number, angle?: number) {
+            if (centerx != null && centery != null && width != null && height != null && angle != null) {
+                this.angle = angle;
+                this.centerx = centerx;
+                this.centery = centery;
+                this.width = width;
+                this.height = height;
+                this.points = [new Point(), new Point(), new Point(), new Point(), new Point(), new Point(), new Point(), new Point(), new Point()];
+                let lt = this.points[0];
+                let rt = this.points[1];
+                let rb = this.points[2];
+                let lb = this.points[3];
+                let ct = this.points[4];
+                let cb = this.points[5];
 
-            let cl = this.points[6];
-            let cr = this.points[7];
+                let cl = this.points[6];
+                let cr = this.points[7];
 
-            cr.x = this.centerx + Math.cos(this.angle) * this.width / 2;
-            cr.y = this.centery + Math.sin(this.angle) * this.width / 2;
+                cr.x = this.centerx + Math.cos(this.angle) * this.width / 2;
+                cr.y = this.centery + Math.sin(this.angle) * this.width / 2;
 
-            cl.x = 2 * this.centerx - cr.x;
-            cl.y = 2 * this.centery - cr.y;
+                cl.x = 2 * this.centerx - cr.x;
+                cl.y = 2 * this.centery - cr.y;
 
-            rt.x = cr.x + Math.sin(this.angle) * this.height / 2;
-            rt.y = cr.y - Math.cos(this.angle) * this.height / 2;
-            rb.x = 2 * cr.x - rt.x;
-            rb.y = 2 * cr.y - rt.y;
+                rt.x = cr.x + Math.sin(this.angle) * this.height / 2;
+                rt.y = cr.y - Math.cos(this.angle) * this.height / 2;
+                rb.x = 2 * cr.x - rt.x;
+                rb.y = 2 * cr.y - rt.y;
 
-            lb.x = cl.x - Math.sin(this.angle) * this.height / 2;
-            lb.y = cl.y + Math.cos(this.angle) * this.height / 2;
+                lb.x = cl.x - Math.sin(this.angle) * this.height / 2;
+                lb.y = cl.y + Math.cos(this.angle) * this.height / 2;
 
-            lt.x = 2 * cl.x - lb.x;
-            lt.y = 2 * cl.y - lb.y;
+                lt.x = 2 * cl.x - lb.x;
+                lt.y = 2 * cl.y - lb.y;
 
-            cb.x = (lb.x + rb.x)/2;
-            cb.y = (lb.y + rb.y)/2;
-            ct.x = (lt.x + rt.x)/2;
-            ct.y =(lt.y + rt.y)/2;
+                cb.x = (lb.x + rb.x) / 2;
+                cb.y = (lb.y + rb.y) / 2;
+                ct.x = (lt.x + rt.x) / 2;
+                ct.y = (lt.y + rt.y) / 2;
 
-            let center = this.points[8];
-            center.x = this.centerx;
-            center.y = this.centery;
+                let center = this.points[8];
+                center.x = this.centerx;
+                center.y = this.centery;
 
-
+            }
         }
         get raidius(): number {
             return Math.sqrt(Math.pow(this.center.x - this.leftTop.x, 2) + Math.pow(this.center.y - this.leftTop.y, 2));
@@ -91,6 +92,18 @@ namespace android.test {
             return new Point(this.centerx, this.centery);
         }
 
+        clone(): RotateRect {
+            let rect: RotateRect = new RotateRect();
+            rect.centerx = this.centerx;
+            rect.centery = this.centery;
+            rect.width = this.width;
+            rect.height = this.height;
+            rect.angle = this.angle;
+            for(let i= 0; i < this.points.length; ++i){
+                rect.points.push(this.points[i].clone());
+            }
+            return rect;
+        }
 
     }
     export class RotateLine {

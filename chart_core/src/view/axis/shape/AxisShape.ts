@@ -21,9 +21,9 @@ namespace android.test {
         public _lableFont: Font;
         public _majorTick: RotateLine;
         public _minorTick: RotateLine;
-        public _showLabel:boolean;
+        public _showLabel: boolean;
 
-        constructor(context:Context) {
+        constructor(context: Context) {
             super(context);
             this._major = Default.strokestyle.clone();
             this._minor = Default.strokestyle.clone();
@@ -34,24 +34,56 @@ namespace android.test {
 
         onDrawShape(canvas: Canvas): void {
             canvas.save();
-            // canvas.clip(rect);
-            let xs:number[]=[];
-            let ys:number[]=[];
-            let pts:Point[] = this._lableRect.points;
-            for (var j = 0; j < 4; ++j) {
-                xs.push(pts[j].x);
-                ys.push(pts[j].y);
-            }
-            // canvas.drawPolygon(xs,ys,"blue");
-            // this._lableFont.fontColor ='red';
+            // let xs:number[]=[];
+            // let ys:number[]=[];
+            // let pts:Point[] = this._lableRect.points;
+            // for (var j = 0; j < 4; ++j) {
+            //     xs.push(pts[j].x);
+            //     ys.push(pts[j].y);
+            // }
             canvas.drawLine(this._majorTick.startPoint, this._majorTick.endPoint, this._major);
-            if(this._showLabel){
-                canvas.drawText(this._label, this._lableRect.leftTop,this._lableFont,this._lableRect.leftTop,this._lableRect.angle * 180 /Math.PI);
+            if (this._showLabel) {
+                canvas.drawText(this._label, this._lableRect.leftTop, this._lableFont, this._lableRect.leftTop, this._lableRect.angle * 180 / Math.PI);
             }
             canvas.drawLine(this._minorTick.startPoint, this._minorTick.endPoint, this._minor);
-
             canvas.restore();
         }
+
+        protected _drawAnimation(canvas: Canvas): void {
+            console.log("draw Axis Animation");
+            let offsetx = this.animationXs[0]-this._lableRect.points[0].x;
+            let offsety = this.animationYs[0] - this._lableRect.points[0].y;
+            let _majorTickStartpt:Point = this._majorTick.startPoint.clone();
+            let _majorTickEndpt:Point =  this._majorTick.endPoint.clone();
+            _majorTickStartpt.offset(offsetx,offsety);
+            _majorTickEndpt.offset(offsetx,offsety);
+            let lt:Point = this._lableRect.leftTop.clone();
+            lt.offset(offsetx,offsety);
+            canvas.drawLine(_majorTickStartpt, _majorTickEndpt, this._major);
+            if (this._showLabel) {
+                canvas.drawText(this._label, lt, this._lableFont, lt, this._lableRect.angle * 180 / Math.PI);
+            }
+            let _minorTickStartpt:Point = this._minorTick.startPoint.clone();
+            let _minorTickEndpt:Point =  this._minorTick.endPoint.clone();
+            _minorTickStartpt.offset(offsetx,offsety);
+            _minorTickEndpt.offset(offsetx,offsety);
+            canvas.drawLine(_minorTickStartpt, _minorTickEndpt, this._minor);
+        }
+
+        getpts(size: number): { xs: number[], ys: number[] } {
+            if (this._pts == null) {
+                this._pts = {xs:[],ys:[]};
+                let pts: Point[] = this._lableRect.points;
+                for (var j = 0; j < 4; ++j) {
+                    this._pts.xs.push(pts[j].x);
+                    this._pts.ys.push(pts[j].y);
+                }
+                // this._pts.xs[0]=0;
+                // this._pts.ys[0]=0;
+            }
+            return this._pts;
+        }
+
 
         refresh(): void {
 

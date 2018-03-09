@@ -4,14 +4,12 @@
 namespace android.test.cartesian {
     'use strict';
     export class DataModel {
-
+        
         private __encoding: Encoding;
         private __filter: Filter;
-        private __data:any;
-        
+        private __data: any;
         private __series: Series[];
-        // private __helpSeries:Series[];
-        private __allSeries:Series[];
+        private __allSeries: Series[];
         private __chartTypes: ChartType[] = [];
         protected __scalePairs: { series: string[], filed: Field, scale: Scale }[];
         private _analyseEncoding(encode: any): Encoding {
@@ -23,19 +21,19 @@ namespace android.test.cartesian {
         }
 
         private _analyseSeries(series_data: any, encoding: Encoding): void {
-            this.__series =[];
-            this.__allSeries =[];
+            this.__series = [];
+            this.__allSeries = [];
             for (let i = 0; i < series_data.length; ++i) {
                 let seriesitem = series_data[i];
                 let ser: Series = new Series(encoding, seriesitem, i);
-                if(this.__filter != null && this.__filter.series.indexOf(seriesitem.name)>-1){
+                if (this.__filter != null && this.__filter.series.indexOf(seriesitem.name) > -1) {
                     ser.enable = true;
                     this.__series.push(ser);
                     if (this.__chartTypes.indexOf(ser.chartType) < 0) {
                         this.__chartTypes.push(ser.chartType);
                     }
-                }else{
-                    ser.enable =false;
+                } else {
+                    ser.enable = false;
                 }
                 this.__allSeries.push(ser);
             }
@@ -44,26 +42,24 @@ namespace android.test.cartesian {
 
         constructor(data: any) {
             this.__data = data;
-
             this.__encoding = this._analyseEncoding(this.__data.encoding);
             this._analyseFilter(data.filter);
             this.refresh();
-
         }
-        public refresh(){
+
+        public refresh() {
             this._analyseSeries(this.__data.series, this.__encoding);
             this._createLayoutScales(this.encoding);
         }
 
         private _analyseFilter(filter: any) {
             if (filter != null) {
-                this.__filter = new Filter( filter.series,filter.rules);
+                this.__filter = new Filter(filter.series, filter.rules);
             }
         }
 
         private _createLayoutScales(encoding: Encoding) {
             this.__scalePairs = [];
-
             if (this.__series.length > 1) {
                 this._stack(ChartType.Bar);
                 this._stack(ChartType.Line);
@@ -72,17 +68,15 @@ namespace android.test.cartesian {
                 for (let i = 0; i < this.__series.length - 1; ++i) {
                     let series: Series = this.__series[i];
                     let next_series: Series = this.__series[i + 1];
-
                     for (let pairA of series.scalePairs) {
                         for (let pairB of next_series.scalePairs) {
                             if (pairA.filed.equals(pairB.filed)) {
                                 let filed = pairA.filed;
-                                let force :boolean = this.encoding._stack && pairA.filed.name =='y';                                
+                                let force: boolean = this.encoding._stack && pairA.filed.name == 'y';
                                 let infoA: { series: string[], filed: Field, scale: Scale } = this.__getScaleInfobyname(pairA.filed.name, series.name);
                                 let infoB: { series: string[], filed: Field, scale: Scale } = this.__getScaleInfobyname(pairB.filed.name, next_series.name);
-
                                 if (infoA == null && infoB == null) {
-                                    let scale = Utility.mergeScale(pairA.scale, pairB.scale,force);
+                                    let scale = Utility.mergeScale(pairA.scale, pairB.scale, force);
                                     if (scale != null) {
                                         this.__scalePairs.push({ series: [series.name, next_series.name], filed: filed, scale: scale });
                                     } else {
@@ -90,7 +84,7 @@ namespace android.test.cartesian {
                                         this.__scalePairs.push({ series: [next_series.name], filed: pairB.filed, scale: pairB.scale });
                                     }
                                 } else if (infoA == null && infoB != null) {
-                                    let scale = Utility.mergeScale(pairA.scale, infoB.scale,force);
+                                    let scale = Utility.mergeScale(pairA.scale, infoB.scale, force);
                                     if (scale != null) {
                                         infoB.scale = scale;
                                         infoB.series.push(series.name);
@@ -98,7 +92,7 @@ namespace android.test.cartesian {
                                         this.__scalePairs.push({ series: [series.name], filed: pairA.filed, scale: pairA.scale });
                                     }
                                 } else if (infoA != null && infoB == null) {
-                                    let scale = Utility.mergeScale(pairB.scale, infoA.scale,force);
+                                    let scale = Utility.mergeScale(pairB.scale, infoA.scale, force);
                                     if (scale != null) {
                                         infoA.scale = scale;
                                         infoA.series.push(next_series.name);
@@ -125,11 +119,11 @@ namespace android.test.cartesian {
                 }
             }
         }
+
         private _stack(chartType: ChartType) {
             if (this.encoding._stack) {
                 let negative: any = {};
                 let positive: any = {};
-
                 for (let i = 0; i < this.series.length; ++i) {
                     let serA = this.series[i];
                     if (serA.chartType === chartType) {
@@ -182,13 +176,13 @@ namespace android.test.cartesian {
         get series(): Series[] {
             return this.__series;
         }
-        get allSeries():Series[]{
+        get allSeries(): Series[] {
             return this.__allSeries;
         }
         get encoding(): Encoding {
             return this.__encoding;
         }
-        get filter():Filter{
+        get filter(): Filter {
             return this.__filter;
         }
 

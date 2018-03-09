@@ -33,6 +33,8 @@ namespace android.test {
         
         onDraw(canvas:Canvas):void{
             super.onDraw(canvas);
+            // console.log("onDraw  " + this.comparedAnimationEmpty );
+            // console.log(this);
             if(this.comparedAnimationEmpty){
                 this.onDrawShape(canvas);
             }else{

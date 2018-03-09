@@ -448,7 +448,7 @@ namespace android.graphics {
             let ys:number[]=[];
             let pi:number = Math.PI;
             for(let i =0; i <size; ++i){
-                let angle:number = 360/size * i / pi;
+                let angle:number =   i * 2*pi/size;
                 let x:number = Math.sin(angle) * raidius + center.x;
                 let y:number = Math.cos(angle) * raidius + center.y;
                 xs.push(x);

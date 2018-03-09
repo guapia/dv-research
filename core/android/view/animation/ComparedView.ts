@@ -15,18 +15,18 @@ namespace android {
         }
 
         get ptcount(): number {
-            return 100;
+            return 30;
         }
         getComparedAnimation(fromview: ComparedView): Animation {
             let topts = this.getpts(this.ptcount);
             let frompts = fromview.getpts(fromview.ptcount);
-            let same: boolean = topts.xs.every((v: number, index: number, arr: number[]) => {
-                return v === frompts.xs[index];
-            }) &&
-                topts.ys.every((v: number, index: number, arr: number[]) => {
-                    return v === frompts.ys[index];
-                });
-            if (same) { return; }
+            // let same: boolean = topts.xs.every((v: number, index: number, arr: number[]) => {
+            //     return v === frompts.xs[index];
+            // }) &&
+            //     topts.ys.every((v: number, index: number, arr: number[]) => {
+            //         return v === frompts.ys[index];
+            //     });
+            // if (same) { return; }
 
             if (topts == null || frompts == null) {
                 return null;
@@ -83,6 +83,7 @@ namespace android {
                 let minLen: number = Math.min(this.toXs.length, this.toYs.length, this.fromXs.length, this.fromYs.length);
                 let toStep: number = Math.min(this.toXs.length, this.toYs.length) / minLen;
                 let fromStep: number = Math.min(this.fromXs.length, this.fromYs.length) / minLen;
+
                 for (let i = 0; i < minLen; ++i) {
                     let toindex: number = i;//Math.floor(i * toStep);
                     let fromindex: number = i;//Math.floor(i * fromStep);

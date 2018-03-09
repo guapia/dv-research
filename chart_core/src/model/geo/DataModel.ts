@@ -19,7 +19,7 @@ namespace android.test.map {
         private __series: Series[];
         private __allSeries: Series[];
         private __chartTypes: ChartType[] = [];
-        private __config: Config
+        private __config: GeoConfig
         protected __scalePairs: { series: string[], filed: Field, scale: Scale }[];
         public featureList: Feature[];
         public projection: Projection;
@@ -29,7 +29,7 @@ namespace android.test.map {
             this.__data = data;
             this.projection = new MercatorProjection();
             if (data.config != null) {
-                this.__config = new Config(data.config);
+                this.__config = new GeoConfig(data.config);
                 if (this.__config.center != null) {
                     this.projection.center(this.__config.center.x, this.__config.center.y);
                 }
@@ -46,7 +46,7 @@ namespace android.test.map {
         }
 
 
-        get config():Config{
+        get config():GeoConfig{
             return this.__config;
         }
 

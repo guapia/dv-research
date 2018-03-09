@@ -38,6 +38,8 @@ namespace android.test {
             this._strokeStyle = strokeStyle;
             if (strokeStyle == null) {
                 this._strokeStyle = Default.strokestyle;
+                this._strokeStyle.strokeColor ='black';
+                this._strokeStyle.strokeWidth =1;
             }
             this.priority = ++ScatterShape.ScatterPrority;
 
@@ -45,6 +47,9 @@ namespace android.test {
         onDrawShape(canvas: Canvas): void {
             canvas.drawArc(this.layoutInfo.innerrect, 0, 2 * 180, this.style);
         }
+        // protected _drawAnimation(canvas:Canvas):void{
+        //     canvas.drawLines(this.animationXs,this.animationYs,this._strokeStyle);
+        // }
 
         getpts(size:number):{xs:number[],ys:number[]}{
             if(this._pts == null){
@@ -52,8 +57,8 @@ namespace android.test {
                 let center :Point = this.layoutInfo.innerrect.center;
                 this._pts = Util.createPtsFromCircle(this.layoutInfo.innerrect.width/2,center,this.ptcount);
             }
+            
             return this._pts;
-
         }
 
 
@@ -84,6 +89,7 @@ namespace android.test {
             return true;
         }
 
+        
     }
     export class ScatterAnimation extends Animation {
         private rect: Rect;
