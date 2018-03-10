@@ -43,8 +43,6 @@ namespace android {
             for (let view of views) {
                 currentCache[view.id] = view;
             }
-            console.log(this._cache);
-            console.log(currentCache);
             if (!this.isempty) {
                 for (let key in currentCache) {
                     let fromview = this._cache[key];
@@ -67,7 +65,6 @@ namespace android {
                 animation.from = 0;
                 animation.to = 1;
                 toview.startAnimation(animation);
-                console.log("start Alpha animation   ======  ");
             }else{
                 toview.startAnimation(toview.getComparedAnimation(fromview));
             }

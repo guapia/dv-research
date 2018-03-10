@@ -75,8 +75,6 @@ namespace android.test {
                     let max: number = Math.max(scaleA.max, scaleB.max);
                     let rate1: number = Math.abs(max - min) / (Math.abs(scaleA.max - scaleA.min));
                     let rate2: number = Math.abs(max - min) / (Math.abs(scaleB.max - scaleB.min));
-
-                    console.log("Linear range rate1 = " + rate1 + " , rate2 = " + rate2);
                     if (force || (rate1 < 10 && rate2 < 10)) {
                         scale = scaleA.clone();
                         scale.domain([min, max]);

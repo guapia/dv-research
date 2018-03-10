@@ -79,6 +79,9 @@ namespace android.test {
                     animation_out.from = 1.2;
                     animation_out.to = 1;
                     animation_out.fillAfter = false;
+                    if(this.animation != null && this.animation instanceof ScatterAnimation){
+                        this.animation.interrupt();
+                    }
                     this.startAnimation(animation_out);
                     break;
                 case MotionEvent.ACTION_MOUSE_MOVE:

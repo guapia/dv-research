@@ -47,6 +47,9 @@ namespace android.view {
 
         drawChild(canvas: Canvas, view: View) {
             // if (Util.isMixed(view.layoutInfo.innerrect, this.layoutInfo.innerrect)) {
+                if(view.animation != null){
+                    view.animation.now= this.getDrawingTime();
+                }
                 if (view.animation != null && !view.animation.isAniamtionEnd) {
                     canvas.save();
                     if (view.animation.state === AnimationState.BeforeStart) {

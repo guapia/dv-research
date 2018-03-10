@@ -104,7 +104,7 @@ namespace android.test.cartesian {
            let handler :Handler= this.getContext().getArgs(EventMessage);
             switch (event.action) {
                 case MotionEvent.ACTION_CLICK:
-                    console.log("event ");
+
                     // window['EventHandler'](new Point(event.x, event.y), ElementType.SeriesLegend, { 'series': this.series.name, 'enable': this.series.enable ,action:"enableseries"});
                     let msg :Message = new Message();
                     msg.args['types']= ElementType.SeriesLegend;

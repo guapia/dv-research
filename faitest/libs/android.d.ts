@@ -452,11 +452,14 @@ declare namespace android.view.animation {
         fillAfter: boolean;
         state: AnimationState;
         repeate: boolean;
+        _now: number;
         _startCallBack: (view: View) => void;
         _endCallBack: (view: View) => void;
         private __oldProprity;
         constructor();
         setAnimationCallBack(onAnimationStart: (view: View) => void, onAnimationEnd: (view: View) => void): void;
+        now: number;
+        interrupt(): void;
         readonly isAniamtionEnd: boolean;
         scale(now: number): number;
         applyTransformation(interpolatedTime: number, canvas: Canvas, view: View): void;

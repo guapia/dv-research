@@ -36,6 +36,8 @@ namespace android.test {
             this._strokeStyle =strokeStyle;
             if(strokeStyle == null){
                 this._strokeStyle = Default.strokestyle;
+                this._strokeStyle.strokeWidth =1;
+                this._strokeStyle.strokeColor = 'red';
             }
             if(this._sweep < 0){
                 this._startAngle = this._startAngle + this._sweep;

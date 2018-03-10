@@ -47,14 +47,14 @@ namespace android.graphics {
 
         strokeWidth: number;
         strokeColor: string;
-        dash:number[];
-        dashOffset:number;
-        constructor(strokewidth: number, strokecolor: string,dash?:number[],dashoffset?:number) {
+        dash: number[];
+        dashOffset: number;
+        constructor(strokewidth: number, strokecolor: string, dash?: number[], dashoffset?: number) {
             this.strokeWidth = strokewidth;
             this.strokeColor = strokecolor;
-            if(dash != null && dash instanceof Array && dash.length > 0){
+            if (dash != null && dash instanceof Array && dash.length > 0) {
                 this.dash = dash;
-                if(dashoffset != null && !isNaN(dashoffset)){
+                if (dashoffset != null && !isNaN(dashoffset)) {
                     this.dashOffset = dashoffset;
                 }
             }
@@ -100,8 +100,8 @@ namespace android.graphics {
     }
 
     export class Gradient {
-        public colors:{offset:number,color:string}[] =[];
-        constructor(colors:{offset:number,color:string}[]){
+        public colors: { offset: number, color: string }[] = [];
+        constructor(colors: { offset: number, color: string }[]) {
             this.colors = colors;
         }
     }
@@ -109,12 +109,12 @@ namespace android.graphics {
     export class LinearGradient extends Gradient {
         public startx: number;
         public starty: number;
-        public endx:number;
-        public endy:number;
-        constructor(sx:number,sy:number,ex:number,ey:number,colors:{offset:number,color:string}[]){
+        public endx: number;
+        public endy: number;
+        constructor(sx: number, sy: number, ex: number, ey: number, colors: { offset: number, color: string }[]) {
             super(colors);
-            this.startx =sx;
-            this.starty =sy;
+            this.startx = sx;
+            this.starty = sy;
             this.endx = ex;
             this.endy = ey;
 
@@ -122,22 +122,22 @@ namespace android.graphics {
     }
 
     export class RadialGradient extends Gradient {
-        public centerx:number;
-        public centery:number;
-        public radius:number
-        
-        public centerx1:number;
-        public centery1:number;
-        public radius1:number;
-        constructor(cx:number,cy:number,r:number,cx1:number,cy1:number,r1:number,colors:{offset:number,color:string}[]){
+        public centerx: number;
+        public centery: number;
+        public radius: number
+
+        public centerx1: number;
+        public centery1: number;
+        public radius1: number;
+        constructor(cx: number, cy: number, r: number, cx1: number, cy1: number, r1: number, colors: { offset: number, color: string }[]) {
             super(colors);
-            this.centerx =cx;
+            this.centerx = cx;
             this.centery = cy;
             this.radius = r;
-            this.centerx1 =cx1;
+            this.centerx1 = cx1;
             this.centery1 = cy1;
             this.radius1 = r1;
-            
+
         }
     }
 
@@ -398,95 +398,92 @@ namespace android.graphics {
         }
 
 
-        static HashCode(obj:number|string|any):string{
-            if(obj == null){return '';}
-            if(obj instanceof Object){
-                let hash:string = '';
-                for(let key in obj){
-                    hash = hash+Util.HashCode(key)+Util.HashCode(obj[key]);
+        static HashCode(obj: number | string | any): string {
+            if (obj == null) { return ''; }
+            if (obj instanceof Object) {
+                let hash: string = '';
+                for (let key in obj) {
+                    hash = hash + Util.HashCode(key) + Util.HashCode(obj[key]);
                 }
                 return Util.HashCodeString(hash);
-            }else if(typeof obj =='string') {
+            } else if (typeof obj == 'string') {
                 return Util.HashCodeString(obj);
-            }else if(typeof obj == 'number'){
-                return Util.HashCodeString('number'+obj);
-            }else if(typeof obj =='boolean'){
-                return Util.HashCodeString('boolean'+obj);
+            } else if (typeof obj == 'number') {
+                return Util.HashCodeString('number' + obj);
+            } else if (typeof obj == 'boolean') {
+                return Util.HashCodeString('boolean' + obj);
             }
             return null;
         }
 
-        static HashCodeString(obj:string):string{
-            let hash = 0,i ,chr;
-            if(obj== null || obj.length === 0){return hash+'';}
-            for(i = 0; i < obj.length; ++i){
+        static HashCodeString(obj: string): string {
+            let hash = 0, i, chr;
+            if (obj == null || obj.length === 0) { return hash + ''; }
+            for (i = 0; i < obj.length; ++i) {
                 chr = obj.charCodeAt(i);
                 hash = ((hash << 5) - hash) + chr;
                 hash |= 0;
             }
-            return hash+'';
+            return hash + '';
         }
 
 
-        static createPtsFromRect(rect:Rect,size:number):{xs:number[],ys:number[]}{
-            let xs:number[]=[];
-            let ys:number[]=[];
-            let pts:Point[] = [new Point(rect.left,rect.top),new Point(rect.right,rect.top),new Point(rect.right,rect.bottom),new Point(rect.left,rect.bottom),new Point(rect.left,rect.top)];
-            for(let i = 0; i < pts.length-1; ++i){
-                let p1=pts[i];
-                let p2=pts[i+1];
-                for(let j = 0; j < size/4;++j){
-                    xs.push(p1.x+ (p2.x-p1.x)/(size/4) *j);
-                    ys.push(p1.y+ (p2.y-p1.y)/(size/4) *j);
+        static createPtsFromRect(rect: Rect, size: number): { xs: number[], ys: number[] } {
+            let xs: number[] = [];
+            let ys: number[] = [];
+            let pts: Point[] = [new Point(rect.left, rect.top), new Point(rect.right, rect.top), new Point(rect.right, rect.bottom), new Point(rect.left, rect.bottom), new Point(rect.left, rect.top)];
+            for (let i = 0; i < pts.length - 1; ++i) {
+                let p1 = pts[i];
+                let p2 = pts[i + 1];
+                for (let j = 0; j < size / 4; ++j) {
+                    xs.push(p1.x + (p2.x - p1.x) / (size / 4) * j);
+                    ys.push(p1.y + (p2.y - p1.y) / (size / 4) * j);
                 }
             }
-            return {xs:xs,ys:ys};
+            return { xs: xs, ys: ys };
         }
 
-        static createPtsFromCircle(raidius:number,center:Point,size:number):{xs:number[],ys:number[]}{
-            let xs:number[]=[];
-            let ys:number[]=[];
-            let pi:number = Math.PI;
-            for(let i =0; i <size; ++i){
-                let angle:number =   i * 2*pi/size;
-                let x:number = Math.sin(angle) * raidius + center.x;
-                let y:number = Math.cos(angle) * raidius + center.y;
+        static createPtsFromCircle(raidius: number, center: Point, size: number): { xs: number[], ys: number[] } {
+            let xs: number[] = [];
+            let ys: number[] = [];
+            let pi: number = Math.PI;
+            for (let i = 0; i < size; ++i) {
+                let angle: number = i * 2 * pi / size;
+                let x: number = Math.sin(angle) * raidius + center.x;
+                let y: number = Math.cos(angle) * raidius + center.y;
                 xs.push(x);
                 ys.push(y);
             }
-            return {xs:xs,ys:ys};
+            return { xs: xs, ys: ys };
         }
 
-        static createPtsFromRadialBar(startAngle:number,endAngle:number,radius:number,innerRadius:number,center:Point,size:number):{xs:number[],ys:number[]}{
-            let xs:number[]=[];
-            let ys:number[]=[];
-            let innerxs:number[]=[];
-            let innerys:number[]=[];
-            let pi:number = Math.PI;
-            let currentSize:number = size;
-            let step:number = (endAngle-startAngle)/(currentSize / 2);
-            for(let angle:number = startAngle ; angle < endAngle && xs.length <= currentSize/2; angle+=step){
+        static createPtsFromRadialBar(startAngle: number, endAngle: number, radius: number, innerRadius: number, center: Point, size: number): { xs: number[], ys: number[] } {
+            let xs: number[] = [];
+            let ys: number[] = [];
+            let innerxs: number[] = [];
+            let innerys: number[] = [];
+            let pi: number = Math.PI;
+            let currentSize: number = size;
+            let step: number = (endAngle - startAngle) / (currentSize / 2 - 1);
+            for (let angle: number = startAngle; angle <= endAngle && xs.length < currentSize / 2; angle += step) {
 
-                let x:number = Math.cos(angle) * radius + center.x;
-                let y:number = Math.sin(angle) * radius + center.y;
-                let ix:number = Math.cos(angle) * innerRadius+ center.x;
-                let iy:number = Math.sin(angle) * innerRadius+ center.y;
+                let x: number = Math.cos(angle) * radius + center.x;
+                let y: number = Math.sin(angle) * radius + center.y;
+                let ix: number = Math.cos(angle) * innerRadius + center.x;
+                let iy: number = Math.sin(angle) * innerRadius + center.y;
                 xs.push(x);
                 ys.push(y);
                 innerxs.push(ix);
                 innerys.push(iy);
             }
-            
-            while(xs.length + innerxs.length >size){
-                xs.splice(1,1);
-            }
-            
+
+
             xs = xs.concat(innerxs.reverse());
             ys = ys.concat(innerys.reverse());
-            if(size !== xs.length ){
-                console.log(" error size  " + size +" xs size " + xs.length);
+            if (size !== xs.length) {
+                console.log(" error size  " + size + " xs size " + xs.length);
             }
-            return {xs:xs,ys:ys};
+            return { xs: xs, ys: ys };
         }
 
 

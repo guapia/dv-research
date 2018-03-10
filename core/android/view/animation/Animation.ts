@@ -18,6 +18,7 @@ namespace android.view.animation {
         fillAfter: boolean;
         state: AnimationState;
         repeate: boolean;
+        _now: number;
         _startCallBack: (view: View) => void;
         _endCallBack: (view: View) => void;
         private __oldProprity: number = 0;
@@ -36,9 +37,27 @@ namespace android.view.animation {
             this._startCallBack = onAnimationStart;
             this._endCallBack = onAnimationEnd;
         }
+
+        set now(val: number) {
+            this._now = val;
+        }
+        get now(): number { 
+            if(this._now == null){
+                return Date.now();
+            }else{
+                return this._now; 
+            }
+        }
+
+        interrupt():void{
+            console.log("interrupt");
+            this.repeate = false;
+            this.start = this.now;
+        }
         get isAniamtionEnd(): boolean {
             // console.log("start " + this.start +" , duration "+this.duration +" , now "+Date.now());
-            return (this.start + this.duration < Date.now()) || this.state == AnimationState.End;
+
+            return (this.start + this.duration < this.now) || this.state == AnimationState.End;
         }
 
         scale(now: number): number {
@@ -62,6 +81,6 @@ namespace android.view.animation {
                 this._endCallBack(view);
             }
         }
-        __onInneranimationEnd(canvas:Canvas,view:View){}
+        __onInneranimationEnd(canvas: Canvas, view: View) { }
     }
 }

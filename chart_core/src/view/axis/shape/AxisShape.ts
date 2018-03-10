@@ -34,13 +34,6 @@ namespace android.test {
 
         onDrawShape(canvas: Canvas): void {
             canvas.save();
-            // let xs:number[]=[];
-            // let ys:number[]=[];
-            // let pts:Point[] = this._lableRect.points;
-            // for (var j = 0; j < 4; ++j) {
-            //     xs.push(pts[j].x);
-            //     ys.push(pts[j].y);
-            // }
             canvas.drawLine(this._majorTick.startPoint, this._majorTick.endPoint, this._major);
             if (this._showLabel) {
                 canvas.drawText(this._label, this._lableRect.leftTop, this._lableFont, this._lableRect.leftTop, this._lableRect.angle * 180 / Math.PI);
@@ -50,40 +43,36 @@ namespace android.test {
         }
 
         protected _drawAnimation(canvas: Canvas): void {
-            console.log("draw Axis Animation");
-            let offsetx = this.animationXs[0]-this._lableRect.points[0].x;
+            let offsetx = this.animationXs[0] - this._lableRect.points[0].x;
             let offsety = this.animationYs[0] - this._lableRect.points[0].y;
-            let _majorTickStartpt:Point = this._majorTick.startPoint.clone();
-            let _majorTickEndpt:Point =  this._majorTick.endPoint.clone();
-            _majorTickStartpt.offset(offsetx,offsety);
-            _majorTickEndpt.offset(offsetx,offsety);
-            let lt:Point = this._lableRect.leftTop.clone();
-            lt.offset(offsetx,offsety);
+            let _majorTickStartpt: Point = this._majorTick.startPoint.clone();
+            let _majorTickEndpt: Point = this._majorTick.endPoint.clone();
+            _majorTickStartpt.offset(offsetx, offsety);
+            _majorTickEndpt.offset(offsetx, offsety);
+            let lt: Point = this._lableRect.leftTop.clone();
+            lt.offset(offsetx, offsety);
             canvas.drawLine(_majorTickStartpt, _majorTickEndpt, this._major);
             if (this._showLabel) {
                 canvas.drawText(this._label, lt, this._lableFont, lt, this._lableRect.angle * 180 / Math.PI);
             }
-            let _minorTickStartpt:Point = this._minorTick.startPoint.clone();
-            let _minorTickEndpt:Point =  this._minorTick.endPoint.clone();
-            _minorTickStartpt.offset(offsetx,offsety);
-            _minorTickEndpt.offset(offsetx,offsety);
+            let _minorTickStartpt: Point = this._minorTick.startPoint.clone();
+            let _minorTickEndpt: Point = this._minorTick.endPoint.clone();
+            _minorTickStartpt.offset(offsetx, offsety);
+            _minorTickEndpt.offset(offsetx, offsety);
             canvas.drawLine(_minorTickStartpt, _minorTickEndpt, this._minor);
         }
 
         getpts(size: number): { xs: number[], ys: number[] } {
             if (this._pts == null) {
-                this._pts = {xs:[],ys:[]};
+                this._pts = { xs: [], ys: [] };
                 let pts: Point[] = this._lableRect.points;
                 for (var j = 0; j < 4; ++j) {
                     this._pts.xs.push(pts[j].x);
                     this._pts.ys.push(pts[j].y);
                 }
-                // this._pts.xs[0]=0;
-                // this._pts.ys[0]=0;
             }
             return this._pts;
         }
-
 
         refresh(): void {
 
