@@ -49,31 +49,30 @@ namespace android.test.cartesian {
 
         private __loadItems(){
             let colorScale = this.__scale;
-            if(colorScale instanceof OrdinalScale){
-                let colorArray:string[] =null;
-                if(colorScale.startPosition == null || colorScale.endPosition == null){
-                    colorArray = colorScale.ranges;
-                }else{
-                    colorArray =ColorUtils.gradientColor(colorScale.startPosition,colorScale.endPosition,(<OrdinalScale>colorScale).domains.length);
-                }
-                let len :number  = colorArray.length;
-                let step:number = this.layoutInfo.innerrect.width/len;
-                let left:number=this.layoutInfo.innerrect.left;
-                let top:number =this.layoutInfo.innerrect.top;
-                let height:number = this.layoutInfo.innerrect.height;
-                let style:Style =Default.style;
-
-                for(let color of colorArray){
-                    // let rect:Rect =new Rect(left,top,left+step,top+height);
-                    // style.background = color;
-                    // canvas.drawRect(rect.startPoint,rect.endPoint,true,style);
-                    // left += step;
-                    let item: LegendItem = new LegendItem(this.getContext());
-                    item.name =color;
-                    item.icon = new BarIcon();
-                    item.icon.color = color;
-                    this.children.push(item);
-
+            if(colorScale instanceof OrdinalScale ){
+                if(this.__type == 'color'){
+                    let colorArray:string[] =null;
+                    if(colorScale.startPosition == null || colorScale.endPosition == null){
+                        colorArray = colorScale.ranges;
+                    }else{
+                        colorArray =ColorUtils.gradientColor(colorScale.startPosition,colorScale.endPosition,(<OrdinalScale>colorScale).domains.length);
+                    }
+                    let len :number  = colorArray.length;
+                    let step:number = this.layoutInfo.innerrect.width/len;
+                    let left:number=this.layoutInfo.innerrect.left;
+                    let top:number =this.layoutInfo.innerrect.top;
+                    let height:number = this.layoutInfo.innerrect.height;
+                    let style:Style =Default.style;
+    
+                    for(let color of colorArray){
+                        
+                        let item: LegendItem = new LegendItem(this.getContext());
+                        item.name =color;
+                        item.layoutParams.margin= new android.graphics.Margin(5,5,5,5);
+                        item.icon = new BarIcon();
+                        item.icon.color = color;
+                        this.children.push(item);
+                    }
                 }
             }
         }

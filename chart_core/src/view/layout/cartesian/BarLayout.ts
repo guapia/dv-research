@@ -18,9 +18,19 @@ namespace android.test.cartesian{
             let colorScale:Scale = series.getScale('color');
             let colorArray:string[]=[];
             if(colorScale instanceof OrdinalScale){
-                colorScale = colorScale.clone();
-                colorArray = ColorUtils.gradientColor(colorScale.startPosition,colorScale.endPosition,(<OrdinalScale>colorScale).domains.length);
-                colorScale.range([0,(<OrdinalScale>colorScale).domains.length-1]);
+                // colorScale = colorScale.clone();
+                // colorArray = ColorUtils.gradientColor(colorScale.startPosition,colorScale.endPosition,(<OrdinalScale>colorScale).domains.length);
+                // colorScale.range([0,(<OrdinalScale>colorScale).domains.length-1]);
+                colorScale = colorScale.clone() as OrdinalScale;
+                if(colorScale.startPosition == null || colorScale.endPosition == null){
+                   let len :number=(<OrdinalScale>colorScale).domains.length;
+                   for(let i= 0; i < len;++i){
+                    (<OrdinalScale>colorScale).ranges.push(ColorUtils.Color[i&ColorUtils.Color.length]);
+                   }
+                }else{
+                    colorArray = ColorUtils.gradientColor(colorScale.startPosition,colorScale.endPosition,(<OrdinalScale>colorScale).domains.length);
+                    colorScale.range([0,(<OrdinalScale>colorScale).domains.length-1]);
+                }
             }
             let defaultcolor:string =ColorUtils.indexColor(series.index);
             for(let pt of series.points){
@@ -40,7 +50,11 @@ namespace android.test.cartesian{
                     let color :string = defaultcolor;
                     if(colorScale instanceof OrdinalScale){
                         let colorindex = colorScale.getScaleValue(colorvalue.value);
-                         color = colorArray[colorindex];
+                        if(typeof(colorindex) == 'number'){
+                            color = colorArray[colorindex];
+                        }else if(typeof (colorindex) == 'string'){
+                            color = colorindex;
+                        }
                     }else if(colorScale instanceof LinearScale){
                         color = ColorUtils.getColor(colorScale.startPosition,colorScale.endPosition,colorvalue.value,colorScale.min,colorScale.max);
                     }

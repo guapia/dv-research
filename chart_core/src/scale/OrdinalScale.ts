@@ -60,12 +60,20 @@ namespace android.test {
         }
 
         range(ranges: any[]) {
-            this.__ranges = ranges;
+            if(ranges.length>2 && ranges.length > this.__domains.length){
+                this.__ranges = ranges.slice(0,this.__domains.length);
+            }else{
+                this.__ranges = ranges;
+            }
             this.__bound = false;
             return (this.refresh(), this);
         }
         rangeBounds(ranges: any[]) {
-            this.__ranges = ranges;
+            if(ranges.length>2 && ranges.length > this.__domains.length){
+                this.__ranges = ranges.slice(0,this.__domains.length);
+            }else{
+                this.__ranges = ranges;
+            }
             this.__bound = true;
             return (this.refresh(), this);
         }

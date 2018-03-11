@@ -108,7 +108,7 @@ namespace android.test.cartesian {
                         if(scaleinfo.scale instanceof LinearScale){
                             let legend:LinearScaleLegend= new LinearScaleLegend(this.getContext(),scaleinfo.filed.name);
                             legend.scale = scaleinfo.scale;
-                            legend.layoutParams.width = 200;
+                            legend.layoutParams.width = 300;
                             legend.layoutParams.height = 30;
                             legend.gravity = Gravity.Top;
                             legend.layoutParams.margin.marginLeft=100;
@@ -117,8 +117,8 @@ namespace android.test.cartesian {
                         }else if(scaleinfo.scale instanceof OrdinalScale){
                             let legend:OrdinalScaleLegend= new OrdinalScaleLegend(this.getContext(),scaleinfo.filed.name);
                             legend.scale = scaleinfo.scale;
-                            legend.layoutParams.width = 200;
-                            legend.layoutParams.height = 30;
+                            legend.layoutParams.width = LayoutParams.MATCH_PARENT;
+                            legend.layoutParams.height = LayoutParams.WRAP_CONTENT;
                             legend.gravity = Gravity.Top;
                             legend.layoutParams.margin.marginLeft=100;
                             legend.layoutParams.margin.marginBottom=20;
