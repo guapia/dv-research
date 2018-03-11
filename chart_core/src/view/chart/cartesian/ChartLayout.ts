@@ -25,11 +25,10 @@ namespace android.test.cartesian {
     import Handler = android.util.Handler;
     import Message = android.util.Message;
 
-    export const EventMessage:string = 'EventMessage';
     export class ChartLayout extends BaseChartLayout {
 
         private _chart: CartesianChart;
-        private _legends: ScaleLegend|SeriesLegend[];
+        private _legends: View|SeriesLegend[];
         private _dataModel: DataModel;
         
         constructor(context: Context) {
@@ -105,16 +104,27 @@ namespace android.test.cartesian {
             }
             if(this._dataModel != null){
                 for(let scaleinfo of this._dataModel.scalePairs){
-                    if(scaleinfo.filed.name =='color'){
-                        let legend:ScaleLegend = new ScaleLegend(this.getContext(),'color');
-                        legend.scale = scaleinfo.scale;
-                        legend.layoutParams.width = 200;
-                        legend.layoutParams.height = 30;
-                        legend.gravity = Gravity.Top;
-                        legend.layoutParams.margin.marginLeft=100;
-                        legend.layoutParams.margin.marginBottom=20;
+                    if(scaleinfo.filed.name =='color' || scaleinfo.filed.name =='size'){
+                        if(scaleinfo.scale instanceof LinearScale){
+                            let legend:LinearScaleLegend= new LinearScaleLegend(this.getContext(),scaleinfo.filed.name);
+                            legend.scale = scaleinfo.scale;
+                            legend.layoutParams.width = 200;
+                            legend.layoutParams.height = 30;
+                            legend.gravity = Gravity.Top;
+                            legend.layoutParams.margin.marginLeft=100;
+                            legend.layoutParams.margin.marginBottom=20;
+                            this.addLegend(legend);
+                        }else if(scaleinfo.scale instanceof OrdinalScale){
+                            let legend:OrdinalScaleLegend= new OrdinalScaleLegend(this.getContext(),scaleinfo.filed.name);
+                            legend.scale = scaleinfo.scale;
+                            legend.layoutParams.width = 200;
+                            legend.layoutParams.height = 30;
+                            legend.gravity = Gravity.Top;
+                            legend.layoutParams.margin.marginLeft=100;
+                            legend.layoutParams.margin.marginBottom=20;
+                            this.addLegend(legend);
+                        }
                         
-                        this.addLegend(legend);
                     }
                 }
             }

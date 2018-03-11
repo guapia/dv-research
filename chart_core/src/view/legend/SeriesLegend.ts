@@ -48,13 +48,13 @@ namespace android.test.cartesian {
 
             for (let i = 0; i < this.series.length; ++i) {
                 let item: LegendItem = new LegendItem(this.getContext());
-                item.series = this.series[i];
+                item.name = this.series[i].name;
                 if (this.__shape == 'bar') {
                     item.icon = new BarIcon();
                 } else if (this.__shape == 'scatter') {
                     item.icon = new CircleIcon();
                 }
-                if (item.series.enable) {
+                if (this.series[i].enable) {
                     item.icon.color = ColorUtils.indexColor(i);
                 } else { 
                     item.icon.color = 'gray';
@@ -64,84 +64,5 @@ namespace android.test.cartesian {
         }
 
     }
-    const PADDING: number = 5;
-    export class LegendItem extends View {
-
-        public series: Series;
-        public icon: Icon;
-        public font: Font
-        private __fontRect: Rect;
-        private __iconRect: Rect;
-        constructor(c:Context) {
-            super(c);
-            this.font = Default.font;
-            this.font.fontColor = 'black';
-        }
-
-        onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size {
-            let w: number = width.getMeasureValue();
-            let h: number = height.getMeasureValue();
-            let size: Size = new Size(0, 0);
-            size = canvas.measureString(this.series.name, this.font);
-            this.__fontRect = new Rect(0, 0, size.width, size.height);
-            let iconsize = size.height * 2;
-            this.__iconRect = new Rect(0, 0, iconsize, size.height);
-            size.width = size.width + PADDING * 3 + iconsize;
-            this.setMeasuredDimension(new MeasureSpec(size.width, LayoutParams.EXACTLY), new MeasureSpec(size.height, LayoutParams.EXACTLY));
-            return size;
-        }
-        onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void {
-            super.onLayout(l, t, r, b, canvas);
-            this.__fontRect.translate(l, t);
-            this.__iconRect.translate(l + PADDING + this.__fontRect.width, t);
-        }
-        onDraw(canvas: Canvas): void {
-            canvas.drawText(this.series.name, this.__fontRect.startPoint, this.font);
-            this.icon.draw(this.__iconRect, canvas);
-        }
-        onMouseEvent(event: MotionEvent): boolean {
-
-           let handler :Handler= this.getContext().getArgs(EventMessage);
-            switch (event.action) {
-                case MotionEvent.ACTION_CLICK:
-
-                    // window['EventHandler'](new Point(event.x, event.y), ElementType.SeriesLegend, { 'series': this.series.name, 'enable': this.series.enable ,action:"enableseries"});
-                    let msg :Message = new Message();
-                    msg.args['types']= ElementType.SeriesLegend;
-                    msg.args['info']={ 'series': this.series.name, 'enable': this.series.enable ,action:"enableseries"};
-                    handler.sendMessage(msg);
-                    break;
-                case MotionEvent.ACTION_MOUSE_ON:
-                    this.series.showlabels = true;
-                    // window['EventHandler'](new Point(event.x, event.y), ElementType.SeriesLegend, { 'series': this.series.name, 'showlabel': this.series.showlabels,action:"showlabel" });
-                    break;
-                case MotionEvent.ACTION_MOUSE_OUT:
-                    this.series.showlabels = false;
-                    // window['EventHandler'](new Point(event.x, event.y), ElementType.SeriesLegend, { 'series': this.series.name, 'showlabel': this.series.showlabels ,action:"showlabel"});
-                    break;
-            }
-            return false;
-        }
-    }
-    export abstract class Icon {
-        color: string;
-        abstract draw(rect: Rect, canvas: Canvas): void;
-    }
-    export class BarIcon extends Icon {
-
-        draw(rect: Rect, canvas: Canvas): void {
-            let style: Style = Default.style;
-            style.background = this.color;
-            canvas.drawRect(rect.startPoint, rect.endPoint, true, style);
-        }
-    }
-    export class CircleIcon extends Icon {
-
-        draw(rect: Rect, canvas: Canvas): void {
-            let style: Style = Default.style;
-            style.background = this.color;
-            canvas.drawArc(rect, 0, 2 * 180, style);
-        }
-
-    }
+   
 }

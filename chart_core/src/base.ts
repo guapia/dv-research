@@ -48,7 +48,9 @@
 /// <reference path="./view/ElementType.ts" />
 
 /// <reference path="./view/legend/ILegend.ts" />
-/// <reference path="./view/legend/ScaleLegend.ts" />
+/// <reference path="./view/legend/LinearScaleLegend.ts" />
+/// <reference path="./view/legend/OrdinalScaleLegend.ts" />
+
 /// <reference path="./view/legend/SeriesLegend.ts" />
 
 /// <reference path="./view/shape/Shape.ts" />

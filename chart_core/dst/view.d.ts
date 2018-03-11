@@ -474,11 +474,11 @@ declare namespace android.test.cartesian {
     import MeasureSpec = android.view.MeasureSpec;
     import Size = android.graphics.Size;
     import Canvas = android.graphics.Canvas;
-    class ScaleLegend extends View implements ILegend {
+    class LinearScaleLegend extends View implements ILegend {
         private __scale;
         private __currentValue;
         private __type;
-        constructor(c: Context, type?: 'value' | 'color');
+        constructor(c: Context, type?: 'size' | 'color');
         scale: Scale;
         onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size;
         onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void;
@@ -488,42 +488,31 @@ declare namespace android.test.cartesian {
 }
 declare namespace android.test.cartesian {
     import View = android.view.View;
-    import LinearLayout = android.widget.LinearLayout;
     import Context = android.app.Context;
     import MeasureSpec = android.view.MeasureSpec;
     import Size = android.graphics.Size;
     import Canvas = android.graphics.Canvas;
-    import Rect = android.graphics.Rect;
-    import Font = android.graphics.Font;
-    import MotionEvent = android.view.event.MotionEvent;
+    class OrdinalScaleLegend extends View implements ILegend {
+        private __scale;
+        private __currentValue;
+        private __type;
+        constructor(c: Context, type?: 'size' | 'color');
+        scale: Scale;
+        onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size;
+        onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void;
+        onDraw(canvas: Canvas): void;
+        private _drawColorScale(canvas);
+    }
+}
+declare namespace android.test.cartesian {
+    import LinearLayout = android.widget.LinearLayout;
+    import Context = android.app.Context;
     class SeriesLegend extends LinearLayout implements ILegend {
         private _series;
         private __shape;
         constructor(c: Context, shape?: 'bar' | 'scatter');
         series: Series[];
         private __loadItems();
-    }
-    class LegendItem extends View {
-        series: Series;
-        icon: Icon;
-        font: Font;
-        private __fontRect;
-        private __iconRect;
-        constructor(c: Context);
-        onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size;
-        onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void;
-        onDraw(canvas: Canvas): void;
-        onMouseEvent(event: MotionEvent): boolean;
-    }
-    abstract class Icon {
-        color: string;
-        abstract draw(rect: Rect, canvas: Canvas): void;
-    }
-    class BarIcon extends Icon {
-        draw(rect: Rect, canvas: Canvas): void;
-    }
-    class CircleIcon extends Icon {
-        draw(rect: Rect, canvas: Canvas): void;
     }
 }
 declare namespace android.test {
@@ -1238,7 +1227,6 @@ declare namespace android.test.cartesian {
     import MeasureSpec = android.view.MeasureSpec;
     import RenderType = android.graphics.RenderType;
     import Context = android.app.Context;
-    const EventMessage: string;
     class ChartLayout extends BaseChartLayout {
         private _chart;
         private _legends;
@@ -1622,6 +1610,10 @@ declare namespace android.test.map {
 declare namespace android.test {
 }
 declare namespace android.test {
+    class EventHandler {
+    }
+}
+declare namespace android.test {
     import StrokeStyle = android.graphics.StrokeStyle;
     import FillStyle = android.graphics.FillStyle;
     import Font = android.graphics.Font;
@@ -1640,10 +1632,6 @@ declare namespace android.test {
         constructor(config: any);
     }
 }
-declare namespace android.test {
-    class EventHandler {
-    }
-}
 declare namespace android.test.cartesian {
     class AggregateCache {
         private __domains;
@@ -1654,10 +1642,47 @@ declare namespace android.test.cartesian {
     }
 }
 declare namespace android.test {
+    import View = android.view.View;
+    import Context = android.app.Context;
+    import MeasureSpec = android.view.MeasureSpec;
+    import Size = android.graphics.Size;
+    import Canvas = android.graphics.Canvas;
+    import Rect = android.graphics.Rect;
+    import Font = android.graphics.Font;
+    import MotionEvent = android.view.event.MotionEvent;
+    class LegendItem extends View {
+        name: string;
+        icon: Icon;
+        font: Font;
+        private __fontRect;
+        private __iconRect;
+        constructor(c: Context);
+        onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size;
+        onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void;
+        onDraw(canvas: Canvas): void;
+        onMouseEvent(event: MotionEvent): boolean;
+    }
+    abstract class Icon {
+        color: string;
+        abstract draw(rect: Rect, canvas: Canvas): void;
+    }
+    class BarIcon extends Icon {
+        draw(rect: Rect, canvas: Canvas): void;
+    }
+    class CircleIcon extends Icon {
+        draw(rect: Rect, canvas: Canvas): void;
+    }
+}
+declare namespace android.test {
     enum LegendType {
         Series = 0,
         Color = 1,
         Size = 2,
+    }
+}
+declare namespace android.test {
+    const EventMessage: string;
+    class MessageCenter {
     }
 }
 declare namespace android.test {

@@ -25,12 +25,12 @@ namespace android.test.cartesian {
     import LinearGradient = android.graphics.LinearGradient;
     import FillStyle = android.graphics.FillStyle;
 
-    export class ScaleLegend extends View implements ILegend{
+    export class OrdinalScaleLegend extends View implements ILegend{
 
         private __scale: Scale;
         private __currentValue:number;
         private __type: string = null;
-        constructor(c:Context,type?: 'value' | 'color') {
+        constructor(c:Context,type?: 'size' | 'color') {
             super(c);
             this.__type = type;
         }
@@ -52,7 +52,7 @@ namespace android.test.cartesian {
 
         onDraw(canvas:Canvas){
             super.onDraw(canvas);
-            if(this.__type == 'value'){
+            if(this.__type == 'size'){
                 
             }else if(this.__type == 'color'){
                 this._drawColorScale(canvas);
@@ -61,8 +61,6 @@ namespace android.test.cartesian {
         private _drawColorScale(canvas:Canvas){
             let colorScale = this.__scale;
             if(colorScale instanceof OrdinalScale){
-                // let colorindex = colorScale.getScaleValue(colorValue.value);
-                //  color = colorArray[colorindex];
                 let colorArray:string[] =null;
                 if(colorScale.startPosition == null || colorScale.endPosition == null){
                     colorArray = colorScale.ranges;
@@ -83,20 +81,6 @@ namespace android.test.cartesian {
                     left += step;
 
                 }
-            }else if(colorScale instanceof LinearScale){
-                // color = ColorUtils.getColor(colorScale.startPosition,colorScale.endPosition,colorValue.value,colorScale.min,colorScale.max);
-                let sx :number = this.layoutInfo.innerrect.left+this.layoutInfo.innerrect.width/2;
-                let sy :number = this.layoutInfo.innerrect.top;
-                let ex :number = sy;
-                let ey :number = this.layoutInfo.innerrect.bottom;
-                let l:LinearGradient =new LinearGradient(sx,sy,ex,ey,[
-                    {offset:0,color:colorScale.startPosition},
-                    {offset:1,color:colorScale.endPosition}
-                ]);
-                let fill =new FillStyle();
-                fill.fill = l;
-                let style:Style= new Style(fill,null);
-                canvas.drawRect(this.layoutInfo.innerrect.startPoint,this.layoutInfo.innerrect.endPoint,true,style);
             }
         }
     }
