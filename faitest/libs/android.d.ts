@@ -82,6 +82,15 @@ declare namespace android.graphics {
     }
 }
 declare namespace android.graphics {
+    class Size {
+        width: number;
+        height: number;
+        constructor(w: number, h: number);
+        clone(): Size;
+        hashCode(): number;
+    }
+}
+declare namespace android.graphics {
     import Rect = android.graphics.Rect;
     enum Gravity {
         Left = 0,
@@ -175,7 +184,7 @@ declare namespace android.graphics {
     class FillStyle {
         fill: Gradient | string;
         shadow: Shadow;
-        constructor();
+        constructor(fillstyle?: any);
     }
     class Util {
         static cloneDeep(object: any): any;
@@ -336,15 +345,6 @@ declare namespace android.view {
         dispatchDraw(canvas: Canvas): void;
         addView(View: View, index: number): number;
         invalidateChild(child: View, dirty: Rect): void;
-    }
-}
-declare namespace android.graphics {
-    class Size {
-        width: number;
-        height: number;
-        constructor(w: number, h: number);
-        clone(): Size;
-        hashCode(): number;
     }
 }
 declare namespace android.graphics {
@@ -1018,9 +1018,13 @@ declare namespace android.widget {
     import Orientation = android.graphics.Orientation;
     class LinearLayout extends ViewGroup {
         private _orientation;
+        private _wrap;
         setOrientation(orientation: Orientation): void;
         getOrientation(): Orientation;
+        wrap: boolean;
         onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size;
+        private _wrapRowWidth;
+        private _wrapColHeight;
         measureHorizontal(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size;
         measureVertical(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size;
         onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void;

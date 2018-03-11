@@ -25,7 +25,7 @@ namespace android.test.cartesian {
     import LinearGradient = android.graphics.LinearGradient;
     import FillStyle = android.graphics.FillStyle;
 
-    export class OrdinalScaleLegend extends View implements ILegend{
+    export class OrdinalScaleLegend extends LinearLayout implements ILegend{
 
         private __scale: Scale;
         private __currentValue:number;
@@ -33,32 +33,21 @@ namespace android.test.cartesian {
         constructor(c:Context,type?: 'size' | 'color') {
             super(c);
             this.__type = type;
+            this.wrap = true;
         }
 
 
         public set scale(scale: Scale) {
             this.__scale = scale;
+            this.__loadItems();
+
         }
         public get scale(): Scale {
             return this.__scale;
         }
-        
-        onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size{
-            return super.onMeasure(width,height,canvas);
-        }
-        onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void{
-            super.onLayout(l,t,r,b,canvas);
-        }
 
-        onDraw(canvas:Canvas){
-            super.onDraw(canvas);
-            if(this.__type == 'size'){
-                
-            }else if(this.__type == 'color'){
-                this._drawColorScale(canvas);
-            }
-        }
-        private _drawColorScale(canvas:Canvas){
+
+        private __loadItems(){
             let colorScale = this.__scale;
             if(colorScale instanceof OrdinalScale){
                 let colorArray:string[] =null;
@@ -75,13 +64,58 @@ namespace android.test.cartesian {
                 let style:Style =Default.style;
 
                 for(let color of colorArray){
-                    let rect:Rect =new Rect(left,top,left+step,top+height);
-                    style.background = color;
-                    canvas.drawRect(rect.startPoint,rect.endPoint,true,style);
-                    left += step;
+                    // let rect:Rect =new Rect(left,top,left+step,top+height);
+                    // style.background = color;
+                    // canvas.drawRect(rect.startPoint,rect.endPoint,true,style);
+                    // left += step;
+                    let item: LegendItem = new LegendItem(this.getContext());
+                    item.name =color;
+                    item.icon = new BarIcon();
+                    item.icon.color = color;
+                    this.children.push(item);
 
                 }
             }
         }
+        
+        onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size{
+            return super.onMeasure(width,height,canvas);
+        }
+        onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void{
+            super.onLayout(l,t,r,b,canvas);
+        }
+
+        onDraw(canvas:Canvas){
+            super.onDraw(canvas);
+           
+        }
+
+      
+
+        // private _drawColorScale(canvas:Canvas){
+        //     let colorScale = this.__scale;
+        //     if(colorScale instanceof OrdinalScale){
+        //         let colorArray:string[] =null;
+        //         if(colorScale.startPosition == null || colorScale.endPosition == null){
+        //             colorArray = colorScale.ranges;
+        //         }else{
+        //             colorArray =ColorUtils.gradientColor(colorScale.startPosition,colorScale.endPosition,(<OrdinalScale>colorScale).domains.length);
+        //         }
+        //         let len :number  = colorArray.length;
+        //         let step:number = this.layoutInfo.innerrect.width/len;
+        //         let left:number=this.layoutInfo.innerrect.left;
+        //         let top:number =this.layoutInfo.innerrect.top;
+        //         let height:number = this.layoutInfo.innerrect.height;
+        //         let style:Style =Default.style;
+
+        //         for(let color of colorArray){
+        //             let rect:Rect =new Rect(left,top,left+step,top+height);
+        //             style.background = color;
+        //             canvas.drawRect(rect.startPoint,rect.endPoint,true,style);
+        //             left += step;
+
+        //         }
+        //     }
+        // }
     }
 }

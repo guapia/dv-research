@@ -43,12 +43,12 @@ namespace android.test.cartesian {
             return this.__scale;
         }
         
-        onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size{
-            return super.onMeasure(width,height,canvas);
-        }
-        onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void{
-            super.onLayout(l,t,r,b,canvas);
-        }
+        // onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size{
+        //     return super.onMeasure(width,height,canvas);
+        // }
+        // onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void{
+        //     super.onLayout(l,t,r,b,canvas);
+        // }
 
         onDraw(canvas:Canvas){
             super.onDraw(canvas);
@@ -60,30 +60,6 @@ namespace android.test.cartesian {
         }
         private _drawColorScale(canvas:Canvas){
             let colorScale = this.__scale;
-            // if(colorScale instanceof OrdinalScale){
-            //     // let colorindex = colorScale.getScaleValue(colorValue.value);
-            //     //  color = colorArray[colorindex];
-            //     let colorArray:string[] =null;
-            //     if(colorScale.startPosition == null || colorScale.endPosition == null){
-            //         colorArray = colorScale.ranges;
-            //     }else{
-            //         colorArray =ColorUtils.gradientColor(colorScale.startPosition,colorScale.endPosition,(<OrdinalScale>colorScale).domains.length);
-            //     }
-            //     let len :number  = colorArray.length;
-            //     let step:number = this.layoutInfo.innerrect.width/len;
-            //     let left:number=this.layoutInfo.innerrect.left;
-            //     let top:number =this.layoutInfo.innerrect.top;
-            //     let height:number = this.layoutInfo.innerrect.height;
-            //     let style:Style =Default.style;
-
-            //     for(let color of colorArray){
-            //         let rect:Rect =new Rect(left,top,left+step,top+height);
-            //         style.background = color;
-            //         canvas.drawRect(rect.startPoint,rect.endPoint,true,style);
-            //         left += step;
-
-            //     }
-            // }else 
             if(colorScale instanceof LinearScale){
                 // color = ColorUtils.getColor(colorScale.startPosition,colorScale.endPosition,colorValue.value,colorScale.min,colorScale.max);
                 let sx :number = this.layoutInfo.innerrect.left+this.layoutInfo.innerrect.width/2;

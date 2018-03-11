@@ -24,6 +24,7 @@ namespace android.widget {
 
     export class LinearLayout extends ViewGroup {
         private _orientation: Orientation = Orientation.Horizontal;
+        private _wrap:boolean = false;
         public setOrientation(orientation: Orientation) {
             this._orientation = orientation;
         }
@@ -32,17 +33,43 @@ namespace android.widget {
             return this._orientation;
         }
 
+        public set wrap(value:boolean){
+            this._wrap = value;
+        }
+        public get wrap():boolean{
+            return this._wrap;
+        }
+
 
         onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size {
+            if(this.children.length == 0){
+                return super.onMeasure(width,height,canvas);
+            }
             if (this._orientation === Orientation.Horizontal) {
                 return this.measureHorizontal(width, height, canvas);
             } else {
                 return this.measureVertical(width, height, canvas);
             }
         }
+        private _wrapRowWidth:number[];
+        private _wrapColHeight:number[];
 
         measureHorizontal(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size {
-            var size: Size;
+            let size: Size;
+            let suggeset:Size= new Size(-1,-1);
+            if(this._wrap){
+                this._wrapColHeight =[];
+            }
+            if (this.layoutParams.widthMode === LayoutParams.EXACTLY) {
+                suggeset.width = this.layoutParams.width;
+            } else if (this.layoutParams.widthMode === LayoutParams.MATCH_PARENT) {
+                suggeset.width = width.getMeasureValue();
+            }
+            if (this.layoutParams.heightMode === LayoutParams.EXACTLY) {
+                suggeset.height = this.layoutParams.height;
+            } else if (this.layoutParams.heightMode === LayoutParams.MATCH_PARENT) {
+                suggeset.height = height.getMeasureValue();
+            }
             for (var i = 0; i < this.children.length; ++i) {
                 var item: View = this.children[i];
                 var lp: LayoutParams = item.layoutParams;
@@ -64,28 +91,32 @@ namespace android.widget {
                     size = s.clone();
                 }
             }
-            // if (size.width > width.value) {
-            //     size.width = width.value;
-            // }
-            // if (size.height > height.value) {
-            //     size.height = height.value;
-            // }
-            if (this.layoutParams.widthMode === LayoutParams.EXACTLY) {
-                size.width = this.layoutParams.width;
-            } else if (this.layoutParams.widthMode === LayoutParams.MATCH_PARENT) {
-                size.width = width.getMeasureValue();
+            if(suggeset.width >=0){
+                size.width = suggeset.width;
             }
-            if (this.layoutParams.heightMode === LayoutParams.EXACTLY) {
-                size.height = this.layoutParams.height;
-            } else if (this.layoutParams.heightMode === LayoutParams.MATCH_PARENT) {
-                size.height = height.getMeasureValue();
+            if(suggeset.height >=0){
+                size.height = suggeset.height;
             }
+           
             this.setMeasuredDimension(new MeasureSpec(size.width, LayoutParams.EXACTLY), new MeasureSpec(size.height, LayoutParams.EXACTLY));
             return size;
         }
 
         measureVertical(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size {
-            var size: Size;
+            let size: Size;
+            let suggeset:Size= new Size(-1,-1);
+
+
+            if (this.layoutParams.widthMode === LayoutParams.EXACTLY) {
+                suggeset.width = this.layoutParams.width;
+            } else if (this.layoutParams.widthMode === LayoutParams.MATCH_PARENT) {
+                suggeset.width = width.getMeasureValue();
+            }
+            if (this.layoutParams.heightMode === LayoutParams.EXACTLY) {
+                suggeset.height = this.layoutParams.height;
+            } else if (this.layoutParams.heightMode === LayoutParams.MATCH_PARENT) {
+                suggeset.height = height.getMeasureValue();
+            }
             for (var i = 0; i < this.children.length; ++i) {
                 var item: View = this.children[i];
                 var lp: LayoutParams = item.layoutParams;
@@ -107,22 +138,13 @@ namespace android.widget {
                     size = s.clone();
                 }
             }
-            // if (size.width > width.value) {
-            //     size.width = width.value;
-            // }
-            // if (size.height > height.value) {
-            //     size.height = height.value;
-            // }
-            if (this.layoutParams.widthMode === LayoutParams.EXACTLY) {
-                size.width = this.layoutParams.width;
-            } else if (this.layoutParams.widthMode === LayoutParams.MATCH_PARENT) {
-                size.width = width.getMeasureValue();
+            if(suggeset.width >=0){
+                size.width = suggeset.width;
             }
-            if (this.layoutParams.heightMode === LayoutParams.EXACTLY) {
-                size.height = this.layoutParams.height;
-            } else if (this.layoutParams.heightMode === LayoutParams.MATCH_PARENT) {
-                size.height = height.getMeasureValue();
+            if(suggeset.height >=0){
+                size.height = suggeset.height;
             }
+
             this.setMeasuredDimension(new MeasureSpec(size.width, LayoutParams.EXACTLY), new MeasureSpec(size.height, LayoutParams.EXACTLY));
             return size;
         }

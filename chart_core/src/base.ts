@@ -7,6 +7,8 @@
 
 /// <reference path="./config/ViewConfig.ts" />
 /// <reference path="./config/cartesian/Config.ts" />
+/// <reference path="./message/MessageKey.ts" />
+/// <reference path="./message/MessageCenter.ts" />
 
 
 /// <reference path="./util/Utility.ts" />

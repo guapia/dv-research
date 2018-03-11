@@ -24,6 +24,7 @@ namespace android.test.cartesian {
     import MotionEvent = android.view.event.MotionEvent;
     import Handler = android.util.Handler;
     import Message = android.util.Message;
+
     export class SeriesLegend extends LinearLayout implements ILegend{
 
         private _series: Series[];

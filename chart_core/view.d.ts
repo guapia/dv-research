@@ -33,6 +33,16 @@ declare namespace android.test.config.cartesian {
     }
 }
 declare namespace android.test {
+    const EventMessage: string;
+}
+declare namespace android.test {
+    class MessageCenter {
+        private _messageTable;
+    }
+    class Action {
+    }
+}
+declare namespace android.test {
     class Utility {
         static max(arr: number[]): any;
         static min(arr: number[]): any;
@@ -471,8 +481,6 @@ declare namespace android.test {
 declare namespace android.test.cartesian {
     import View = android.view.View;
     import Context = android.app.Context;
-    import MeasureSpec = android.view.MeasureSpec;
-    import Size = android.graphics.Size;
     import Canvas = android.graphics.Canvas;
     class LinearScaleLegend extends View implements ILegend {
         private __scale;
@@ -480,28 +488,26 @@ declare namespace android.test.cartesian {
         private __type;
         constructor(c: Context, type?: 'size' | 'color');
         scale: Scale;
-        onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size;
-        onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void;
         onDraw(canvas: Canvas): void;
         private _drawColorScale(canvas);
     }
 }
 declare namespace android.test.cartesian {
-    import View = android.view.View;
+    import LinearLayout = android.widget.LinearLayout;
     import Context = android.app.Context;
     import MeasureSpec = android.view.MeasureSpec;
     import Size = android.graphics.Size;
     import Canvas = android.graphics.Canvas;
-    class OrdinalScaleLegend extends View implements ILegend {
+    class OrdinalScaleLegend extends LinearLayout implements ILegend {
         private __scale;
         private __currentValue;
         private __type;
         constructor(c: Context, type?: 'size' | 'color');
         scale: Scale;
+        private __loadItems();
         onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size;
         onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void;
         onDraw(canvas: Canvas): void;
-        private _drawColorScale(canvas);
     }
 }
 declare namespace android.test.cartesian {
@@ -1608,12 +1614,6 @@ declare namespace android.test.map {
     }
 }
 declare namespace android.test {
-}
-declare namespace android.test {
-    class EventHandler {
-    }
-}
-declare namespace android.test {
     import StrokeStyle = android.graphics.StrokeStyle;
     import FillStyle = android.graphics.FillStyle;
     import Font = android.graphics.Font;
@@ -1630,6 +1630,10 @@ declare namespace android.test {
         scale: number;
         translate: Point;
         constructor(config: any);
+    }
+}
+declare namespace android.test {
+    class EventHandler {
     }
 }
 declare namespace android.test.cartesian {
@@ -1678,11 +1682,6 @@ declare namespace android.test {
         Series = 0,
         Color = 1,
         Size = 2,
-    }
-}
-declare namespace android.test {
-    const EventMessage: string;
-    class MessageCenter {
     }
 }
 declare namespace android.test {
