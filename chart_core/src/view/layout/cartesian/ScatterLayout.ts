@@ -52,7 +52,11 @@ namespace android.test.cartesian{
                     let color = defaultcolor;
                     if(colorScale instanceof OrdinalScale){
                         let colorindex = colorScale.getScaleValue(colorValue.value);
-                         color = colorArray[colorindex];
+                        if(typeof(colorindex) == 'number'){
+                            color = colorArray[colorindex];
+                        }else if(typeof (colorindex) == 'string'){
+                            color = colorindex;
+                        }
                     }else if(colorScale instanceof LinearScale){
                         color = ColorUtils.getColor(colorScale.startPosition,colorScale.endPosition,colorValue.value,colorScale.min,colorScale.max);
                     }

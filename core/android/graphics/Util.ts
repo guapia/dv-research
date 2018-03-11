@@ -1,9 +1,11 @@
 
 /// <reference path="Rect.ts" />
+/// <reference path="Size.ts" />
 
 namespace android.graphics {
 
     import Rect = android.graphics.Rect;
+
 
     export enum Gravity {
         Left,
@@ -92,6 +94,11 @@ namespace android.graphics {
 
     export class Style {
         constructor(bg: string | FillStyle, stroke: StrokeStyle) {
+            // if(bg instanceof Object){
+            //     this.background = new FillStyle(bg);
+            // }else{
+            //     this.background = bg;
+            // }
             this.background = bg;
             this.strokeStyle = stroke;
         }
@@ -151,7 +158,17 @@ namespace android.graphics {
     export class FillStyle {
         public fill: Gradient | string;
         public shadow: Shadow;
-        constructor() {
+        constructor(fillstyle?:any) {
+            // if(fillstyle != null){
+            //     if(fillstyle instanceof Object){
+            //         this.shadow= fillstyle.shadow;
+            //         if(fillstyle.shadow instanceof Object){
+            //             this.fill = new Gradient()
+            //         }
+            //     }else{
+
+            //     }
+            // }
             this.fill = 'transparent';
         }
     }

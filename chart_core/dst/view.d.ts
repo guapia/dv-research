@@ -1,6 +1,37 @@
 /// <reference path="node_modules/@types/lodash/index.d.ts" />
 /// <reference path="node_modules/@types/mathjs/index.d.ts" />
 /// <reference path="dst/android.d.ts" />
+declare namespace android.test.config {
+    import FillStyle = android.graphics.FillStyle;
+    import StrokeStyle = android.graphics.StrokeStyle;
+    import Gravity = android.graphics.Gravity;
+    class ViewConfig {
+        private _gravity;
+        private _background;
+        private _stroke;
+        readonly background: string | FillStyle;
+        readonly stroke: StrokeStyle;
+        readonly gravity: Gravity;
+        constructor(option: any);
+    }
+}
+declare namespace android.test.config.cartesian {
+    class Config {
+        private _axis;
+        private _legend;
+        private _plot;
+        readonly axis: AxisConfig[];
+        readonly legend: LegendConfig[];
+        readonly plot: ViewConfig;
+        constructor(option: any);
+    }
+    class AxisConfig extends ViewConfig {
+        constructor(option: any);
+    }
+    class LegendConfig extends ViewConfig {
+        constructor(option: any);
+    }
+}
 declare namespace android.test {
     class Utility {
         static max(arr: number[]): any;
@@ -233,6 +264,7 @@ declare namespace android.test.cartesian {
 }
 declare namespace android.test.cartesian {
     class DataModel {
+        private __config;
         private __encoding;
         private __filter;
         private __data;
@@ -244,6 +276,7 @@ declare namespace android.test.cartesian {
             filed: Field;
             scale: Scale;
         }[];
+        private _analyseConfig(config);
         private _analyseEncoding(encode);
         readonly chartTypes: ChartType[];
         private _analyseSeries(series_data, encoding);
@@ -399,7 +432,7 @@ declare namespace android.test {
         range(ranges: any[]): this;
         rangeBounds(ranges: any[]): this;
         domain(domains: any[]): IScale;
-        getScaleValue(v: any): number;
+        getScaleValue(v: any): number | string;
     }
 }
 declare namespace android.test {
@@ -1618,6 +1651,13 @@ declare namespace android.test.cartesian {
         constructor(agg: Agg);
         put(key: any, value: any): void;
         get(key: any): any;
+    }
+}
+declare namespace android.test {
+    enum LegendType {
+        Series = 0,
+        Color = 1,
+        Size = 2,
     }
 }
 declare namespace android.test {

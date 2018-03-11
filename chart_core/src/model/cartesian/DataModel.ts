@@ -3,8 +3,9 @@
 
 namespace android.test.cartesian {
     'use strict';
+    import Config = android.test.config.cartesian.Config;
     export class DataModel {
-        
+        private __config:Config;
         private __encoding: Encoding;
         private __filter: Filter;
         private __data: any;
@@ -12,6 +13,13 @@ namespace android.test.cartesian {
         private __allSeries: Series[];
         private __chartTypes: ChartType[] = [];
         protected __scalePairs: { series: string[], filed: Field, scale: Scale }[];
+        
+        private _analyseConfig(config:any){
+            if(config!= null){
+                this.__config = new Config(config);
+            }
+        }
+
         private _analyseEncoding(encode: any): Encoding {
             return new Encoding(encode);
         }
@@ -43,6 +51,7 @@ namespace android.test.cartesian {
         constructor(data: any) {
             this.__data = data;
             this.__encoding = this._analyseEncoding(this.__data.encoding);
+            this._analyseConfig(this.__data.config);
             this._analyseFilter(data.filter);
             this.refresh();
         }

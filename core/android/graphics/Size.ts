@@ -1,3 +1,4 @@
+
 namespace android.graphics {
     export class Size {
         width: number;

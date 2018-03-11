@@ -5,6 +5,10 @@
 /// <reference path="../dst/android.d.ts" />
 
 
+/// <reference path="./config/ViewConfig.ts" />
+/// <reference path="./config/cartesian/Config.ts" />
+
+
 /// <reference path="./util/Utility.ts" />
 /// <reference path="./util/ColorUtils.ts" />
 /// <reference path="./util/RotatedRect.ts" />

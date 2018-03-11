@@ -38,6 +38,9 @@ namespace android.test {
             if (this.__ranges.length == 2) {
                 this.__start = this.__ranges[0];
                 this.__end = this.__ranges[1];
+            }else if(this.__ranges.length > 2) {
+                this.__start = null;
+                this.__end = null;
             }
 
             return this;
@@ -71,7 +74,7 @@ namespace android.test {
 
             return this;
         }
-        getScaleValue(v: any) {
+        getScaleValue(v: any) :number|string{
             // var index = this.__domains.indexOf(v);
             // var index = _.indexOf(this.__domains,v);
             let index = this._domainCache[v];
@@ -89,6 +92,8 @@ namespace android.test {
                 } else {
                     value = index * (this.__end - this.__start) / (size - 1) + this.__start;
                 }
+            }else if(this.__ranges.length > 2){
+                value = this.__ranges[index];
             }
             return value;
         }
