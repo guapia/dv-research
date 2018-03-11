@@ -61,7 +61,7 @@ namespace android {
         private __startAnimation(fromview: ComparedView, toview: ComparedView): void {
             if(fromview == null){
                 let animation :AlphaAnimation = new AlphaAnimation();
-                animation.duration = 600;
+                animation.duration = 300;
                 animation.from = 0;
                 animation.to = 1;
                 toview.startAnimation(animation);

@@ -32,7 +32,7 @@ namespace android {
                 return null;
             }
             let animation = new CommonComparedAnimation(frompts.xs, frompts.ys, topts.xs, topts.ys);
-            animation.duration = 600;
+            animation.duration = 300;
             animation.ease = new AnimationEase();
             animation.from = 0;
             animation.to = 1;
