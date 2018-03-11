@@ -48,14 +48,15 @@ namespace android.test{
             this.__fontRect = new Rect(0, 0, size.width, size.height);
             let iconsize = size.height * 2;
             this.__iconRect = new Rect(0, 0, iconsize, size.height);
-            size.width = size.width + PADDING * 3 + iconsize;
+            size.width = size.width +PADDING + iconsize + this._padding.leftPadding + this._padding .rightPadding;
+            size.height += (this._padding.topPadding + this._padding.bottomPadding);
             this.setMeasuredDimension(new MeasureSpec(size.width, LayoutParams.EXACTLY), new MeasureSpec(size.height, LayoutParams.EXACTLY));
             return size;
         }
         onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void {
             super.onLayout(l, t, r, b, canvas);
-            this.__fontRect.translate(l, t);
-            this.__iconRect.translate(l + PADDING + this.__fontRect.width, t);
+            this.__fontRect.translate(l, t+this._padding.topPadding);
+            this.__iconRect.translate(l + PADDING + this.__fontRect.width, t+this._padding.topPadding);
         }
         onDraw(canvas: Canvas): void {
             canvas.drawText(this.name, this.__fontRect.startPoint, this.font);

@@ -65,10 +65,11 @@ namespace android.test.cartesian {
                     let style:Style =Default.style;
     
                     for(let color of colorArray){
-                        
                         let item: LegendItem = new LegendItem(this.getContext());
                         item.name =color;
-                        item.layoutParams.margin= new android.graphics.Margin(5,5,5,5);
+                        item.padding= new android.graphics.Padding(5);
+                        item.layoutParams.width = LayoutParams.WRAP_CONTENT;
+                        item.layoutParams.height = LayoutParams.WRAP_CONTENT;
                         item.icon = new BarIcon();
                         item.icon.color = color;
                         this.children.push(item);

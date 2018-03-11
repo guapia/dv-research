@@ -60,6 +60,9 @@ namespace android.test.cartesian {
                 } else { 
                     item.icon.color = 'gray';
                 }
+                item.padding= new android.graphics.Padding(5);
+                item.layoutParams.width = LayoutParams.WRAP_CONTENT;
+                item.layoutParams.height = LayoutParams.WRAP_CONTENT;
                 this.children.push(item);
             }
         }
