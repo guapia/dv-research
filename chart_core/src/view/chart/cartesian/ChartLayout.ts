@@ -35,13 +35,14 @@ namespace android.test.cartesian {
             super(context);
             this.clip = false;
             let handler :Handler = new Handler((msg:Message)=>{
+                console.log(msg);
                 let types:ElementType =msg.args['types'];
                 let info:any = msg.args['info'];
                     if (types == ElementType.SeriesLegend) {
                         let series: string[] = this._dataModel.filter.series;
                         let index: number = series.indexOf(info.series);
-                        if (info.action === 'enableseries') {
-                            if (info.enable) {
+                        if (info.action === 'enable') {
+                            if (info.value) {
                                 if (index > -1) {
                                     this._dataModel.filter.series.splice(index, 1);
                                 }

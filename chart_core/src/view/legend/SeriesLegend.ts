@@ -25,11 +25,11 @@ namespace android.test.cartesian {
     import Handler = android.util.Handler;
     import Message = android.util.Message;
 
-    export class SeriesLegend extends LinearLayout implements ILegend{
+    export class SeriesLegend extends LinearLayout implements ILegend {
 
         private _series: Series[];
         private __shape: string;
-        constructor(c:Context,shape?: 'bar' | 'scatter') {
+        constructor(c: Context, shape?: 'bar' | 'scatter') {
             super(c);
             this.__shape = shape;
         }
@@ -55,12 +55,9 @@ namespace android.test.cartesian {
                 } else if (this.__shape == 'scatter') {
                     item.icon = new CircleIcon();
                 }
-                if (this.series[i].enable) {
-                    item.icon.color = ColorUtils.indexColor(i);
-                } else { 
-                    item.icon.color = 'gray';
-                }
-                item.padding= new android.graphics.Padding(5);
+
+                item.icon.color = ColorUtils.indexColor(i);
+                item.padding = new android.graphics.Padding(5);
                 item.layoutParams.width = LayoutParams.WRAP_CONTENT;
                 item.layoutParams.height = LayoutParams.WRAP_CONTENT;
                 this.children.push(item);
@@ -68,5 +65,5 @@ namespace android.test.cartesian {
         }
 
     }
-   
+
 }

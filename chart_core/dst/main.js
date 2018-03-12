@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // samples.push(new Node('USAMap1', "geo", geo_data_usa1,geo_func));
     // samples.push(new Node('WorldMap', "geo", geo_data_world,geo_func));
     samples.push(new Node('echartsample', "cartesian", dataechart,cartesian_func));
+    samples.push(new Node('echartsample_colorLegend', "cartesian", dataechart1,cartesian_func));
 
     samples.push(new Node('simplebar', "cartesian", data0,cartesian_func));
 

@@ -34,10 +34,12 @@ namespace android.test{
         public font: Font
         private __fontRect: Rect;
         private __iconRect: Rect;
+        public enable:boolean;
         constructor(c:Context) {
             super(c);
             this.font = Default.font;
             this.font.fontColor = 'black';
+            this.enable = true;
         }
 
         onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size {
@@ -70,8 +72,9 @@ namespace android.test{
 
                     // window['EventHandler'](new Point(event.x, event.y), ElementType.SeriesLegend, { 'series': this.series.name, 'enable': this.series.enable ,action:"enableseries"});
                     let msg :Message = new Message();
-                    // msg.args['types']= ElementType.SeriesLegend;
-                    // msg.args['info']={ 'series': this.name, 'enable': this.series.enable ,action:"enableseries"};
+                    msg.args['types']= ElementType.SeriesLegend;
+                    this.enable = !this.enable;
+                    msg.args['info']={ 'name': this.name,action:"enable",value:this.enable};
                     handler.sendMessage(msg);
                     break;
                 case MotionEvent.ACTION_MOUSE_ON:
