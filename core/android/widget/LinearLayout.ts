@@ -85,19 +85,23 @@ namespace android.widget {
                 }
                 var s = item.onMeasure(new MeasureSpec(w, lp.widthMode), new MeasureSpec(h, lp.heightMode), canvas);
                 if (size) {
-                    // size.width += s.width;
-                    currentColWidth += s.width;
-                    if (this._wrap && this._wrapColHeight) {
-                        if (suggeset.width > 0 && currentColWidth > suggeset.width) {
-                            // size.width -= s.width;
-                            currentColWidth -= s.width;
-                            if(size.width < currentColWidth ){
-                                size.width = currentColWidth;
+
+                    if(this._wrap){
+                        currentColWidth += s.width;
+                        if (this._wrap && this._wrapColHeight) {
+                            if (suggeset.width > 0 && currentColWidth > suggeset.width) {
+                                // size.width -= s.width;
+                                currentColWidth -= s.width;
+                                if(size.width < currentColWidth ){
+                                    size.width = currentColWidth;
+                                }
+                                currentColWidth =  s.width;
+                                this._wrapColHeight.push(size.height);
+                                size.height = 0;
                             }
-                            currentColWidth =  s.width;
-                            this._wrapColHeight.push(size.height);
-                            size.height = 0;
                         }
+                    }else{
+                        size.width += s.width;
                     }
                     if (size.height < s.height) {
                         size.height = s.height;

@@ -1614,10 +1614,6 @@ declare namespace android.test.map {
     }
 }
 declare namespace android.test {
-    class EventHandler {
-    }
-}
-declare namespace android.test {
     import StrokeStyle = android.graphics.StrokeStyle;
     import FillStyle = android.graphics.FillStyle;
     import Font = android.graphics.Font;
@@ -1634,6 +1630,10 @@ declare namespace android.test {
         scale: number;
         translate: Point;
         constructor(config: any);
+    }
+}
+declare namespace android.test {
+    class EventHandler {
     }
 }
 declare namespace android.test.cartesian {
@@ -1661,7 +1661,9 @@ declare namespace android.test {
         private __fontRect;
         private __iconRect;
         enable: boolean;
-        constructor(c: Context);
+        constructor(c: Context, option?: {
+            enable: boolean;
+        });
         onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size;
         onLayout(l: number, t: number, r: number, b: number, canvas: Canvas): void;
         onDraw(canvas: Canvas): void;

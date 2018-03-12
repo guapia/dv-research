@@ -36,19 +36,20 @@ namespace android.test.cartesian {
             this.clip = false;
             let handler :Handler = new Handler((msg:Message)=>{
                 console.log(msg);
+                console.log(msg.args.info.value);
                 let types:ElementType =msg.args['types'];
                 let info:any = msg.args['info'];
                     if (types == ElementType.SeriesLegend) {
                         let series: string[] = this._dataModel.filter.series;
-                        let index: number = series.indexOf(info.series);
+                        let index: number = series.indexOf(info.name);
                         if (info.action === 'enable') {
-                            if (info.value) {
+                            if (!info.value) {
                                 if (index > -1) {
                                     this._dataModel.filter.series.splice(index, 1);
                                 }
                             } else {
                                 if (index < 0) {
-                                    this._dataModel.filter.series.push(info.series);
+                                    this._dataModel.filter.series.push(info.name);
                                 }
                             }
                             this.perpareComparedAnimation()

@@ -18,9 +18,16 @@ namespace android.test.cartesian{
             let defaultcolor:string =ColorUtils.indexColor(series.index);
             let colorArray:string[]=[];
             if(colorScale instanceof OrdinalScale){
-                colorScale = colorScale.clone();
-                colorArray = ColorUtils.gradientColor(colorScale.startPosition,colorScale.endPosition,(<OrdinalScale>colorScale).domains.length);
-                colorScale.range([0,(<OrdinalScale>colorScale).domains.length-1]);
+                colorScale = colorScale.clone() as OrdinalScale;
+                if(colorScale.startPosition == null || colorScale.endPosition == null){
+                   let len :number=(<OrdinalScale>colorScale).domains.length;
+                   for(let i= 0; i < len;++i){
+                    (<OrdinalScale>colorScale).ranges.push(ColorUtils.Color[i&ColorUtils.Color.length]);
+                   }
+                }else{
+                    colorArray = ColorUtils.gradientColor(colorScale.startPosition,colorScale.endPosition,(<OrdinalScale>colorScale).domains.length);
+                    colorScale.range([0,(<OrdinalScale>colorScale).domains.length-1]);
+                }
             }
             let defaultsize:number = 10;
             for(let pt of series.points){
@@ -41,7 +48,11 @@ namespace android.test.cartesian{
                     let color = defaultcolor;
                     if(colorScale instanceof OrdinalScale){
                         let colorindex = colorScale.getScaleValue(colorValue.value);
-                         color = colorArray[colorindex];
+                        if(typeof(colorindex) == 'number'){
+                            color = colorArray[colorindex];
+                        }else if(typeof (colorindex) == 'string'){
+                            color = colorindex;
+                        }
                     }else if(colorScale instanceof LinearScale){
                         color = ColorUtils.getColor(colorScale.startPosition,colorScale.endPosition,colorValue.value,colorScale.min,colorScale.max);
                     }

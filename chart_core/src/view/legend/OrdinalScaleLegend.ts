@@ -72,7 +72,8 @@ namespace android.test.cartesian {
                         item.layoutParams.height = LayoutParams.WRAP_CONTENT;
                         item.icon = new BarIcon();
                         item.icon.color = color;
-                        this.children.push(item);
+                        // this.children.push(item);
+                        this.addViewWithOutReLayout(item);
                     }
                 }
             }

@@ -48,7 +48,7 @@ namespace android.test.cartesian {
             let colorArray: string[] = [];
 
             for (let i = 0; i < this.series.length; ++i) {
-                let item: LegendItem = new LegendItem(this.getContext());
+                let item: LegendItem = new LegendItem(this.getContext(),{enable:this.series[i].enable});
                 item.name = this.series[i].name;
                 if (this.__shape == 'bar') {
                     item.icon = new BarIcon();

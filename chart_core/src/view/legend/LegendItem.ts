@@ -34,12 +34,16 @@ namespace android.test{
         public font: Font
         private __fontRect: Rect;
         private __iconRect: Rect;
-        public enable:boolean;
-        constructor(c:Context) {
+        public enable:boolean = true;
+        constructor(c:Context,option?:{enable:boolean}) {
             super(c);
             this.font = Default.font;
             this.font.fontColor = 'black';
-            this.enable = true;
+            if(option != null && option.enable != null){
+                this.enable = option.enable;
+            }
+          
+
         }
 
         onMeasure(width: MeasureSpec, height: MeasureSpec, canvas: Canvas): Size {
@@ -61,6 +65,9 @@ namespace android.test{
             this.__iconRect.translate(l + PADDING + this.__fontRect.width, t+this._padding.topPadding);
         }
         onDraw(canvas: Canvas): void {
+            if(!this.enable ){
+                this.icon.color = 'gray';
+            }
             canvas.drawText(this.name, this.__fontRect.startPoint, this.font);
             this.icon.draw(this.__iconRect, canvas);
         }
