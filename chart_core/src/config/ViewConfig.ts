@@ -5,6 +5,7 @@ namespace android.test.config{
     import StrokeStyle= android.graphics.StrokeStyle;
     import LinearGradient = android.graphics.LinearGradient;
     import Gravity = android.graphics.Gravity;
+    import Util = android.graphics.Util;
     export class ViewConfig{
         private _gravity:Gravity;
         private _background:string|FillStyle;
@@ -18,6 +19,11 @@ namespace android.test.config{
         }
         get gravity():Gravity{
             return this._gravity;
+        }
+        set gravity(val:Gravity){
+            if(val != null && val != this._gravity){
+                this._gravity = Util.asEnum(val,Gravity,null);
+            }
         }
 
         constructor(option:any){
@@ -40,6 +46,7 @@ namespace android.test.config{
                     this._stroke = new StrokeStyle(option.stroke.width,option.stroke.color,option.stroke.dash,option.stroke.dashoffset);
                 }
             }
+            this.gravity = option.gravity;
 
         }
         

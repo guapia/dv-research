@@ -130,17 +130,9 @@ namespace android.test.cartesian {
                     }
                 }
             }
-            // if (legend != null) {
-            //     // _horizontallegend.setOrientation(Orientation.Horizontal);
-                
-            // }
         }
 
         oninvalidate(){
-            // let comparedanimationcache :ComparedAnimationCache =this.getContext().getArgs('comparedanimation');
-            // if( comparedanimationcache!= null && comparedanimationcache.getPreparing()) {
-            //     return;
-            // }
             super.oninvalidate();
         }
 

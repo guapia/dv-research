@@ -1,6 +1,7 @@
 /// <reference path="../../base.ts" />
 
 namespace android.test.config.cartesian{
+    import LegendType = android.test.LegendType;
     import Gravity = android.graphics.Gravity;
     import Util =android.graphics.Util;
 
@@ -48,8 +49,19 @@ namespace android.test.config.cartesian{
     }
 
     export class LegendConfig extends ViewConfig{
+        private __type:LegendType;
+        get type():LegendType{
+            return this.__type;
+        }
+        set type(val:LegendType){
+            if(val != null && val != this.__type){
+                this.__type = Util.asEnum(val,android.test.LegendType,null);
+            }
+        }
         constructor(option:any){
             super(option);
+            this.type = option.type;
+
         }
     }
     

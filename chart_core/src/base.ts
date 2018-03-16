@@ -48,6 +48,7 @@
 /// <reference path="./scale/ColorScale.ts" />
 
 /// <reference path="./view/ElementType.ts" />
+/// <reference path="./view/legend/LegendType.ts" />
 
 /// <reference path="./view/legend/ILegend.ts" />
 /// <reference path="./view/legend/LinearScaleLegend.ts" />

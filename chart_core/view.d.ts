@@ -11,11 +11,12 @@ declare namespace android.test.config {
         private _stroke;
         readonly background: string | FillStyle;
         readonly stroke: StrokeStyle;
-        readonly gravity: Gravity;
+        gravity: Gravity;
         constructor(option: any);
     }
 }
 declare namespace android.test.config.cartesian {
+    import LegendType = android.test.LegendType;
     class Config {
         private _axis;
         private _legend;
@@ -29,6 +30,8 @@ declare namespace android.test.config.cartesian {
         constructor(option: any);
     }
     class LegendConfig extends ViewConfig {
+        private __type;
+        type: LegendType;
         constructor(option: any);
     }
 }
@@ -254,7 +257,7 @@ declare namespace android.test.cartesian {
         enable: boolean;
         showlabels: boolean;
         readonly id: string;
-        constructor(encoding: Encoding, series: any, index: number);
+        constructor(encoding: Encoding, series: any, index: number, charttype: ChartType);
         private __analyseItem(pairs, item);
         _refresh(): void;
         private __createScale(filed);
@@ -281,16 +284,17 @@ declare namespace android.test.cartesian {
         private __series;
         private __allSeries;
         private __chartTypes;
+        private __chartType;
         protected __scalePairs: {
             series: string[];
             filed: Field;
             scale: Scale;
         }[];
+        constructor(data: any);
         private _analyseConfig(config);
         private _analyseEncoding(encode);
         readonly chartTypes: ChartType[];
         private _analyseSeries(series_data, encoding);
-        constructor(data: any);
         refresh(): void;
         private _analyseFilter(filter);
         private _createLayoutScales(encoding);
@@ -472,6 +476,13 @@ declare namespace android.test {
         Axis = 2,
         SeriesLegend = 3,
         ScaleLegend = 4,
+    }
+}
+declare namespace android.test {
+    enum LegendType {
+        Series = 0,
+        Color = 1,
+        Size = 2,
     }
 }
 declare namespace android.test {
@@ -1614,6 +1625,12 @@ declare namespace android.test.map {
     }
 }
 declare namespace android.test {
+    import ViewGroup = android.view.ViewGroup;
+    class ConfigFactory {
+        static exportConfig(view: ViewGroup): void;
+    }
+}
+declare namespace android.test {
     import StrokeStyle = android.graphics.StrokeStyle;
     import FillStyle = android.graphics.FillStyle;
     import Font = android.graphics.Font;
@@ -1678,13 +1695,6 @@ declare namespace android.test {
     }
     class CircleIcon extends Icon {
         draw(rect: Rect, canvas: Canvas): void;
-    }
-}
-declare namespace android.test {
-    enum LegendType {
-        Series = 0,
-        Color = 1,
-        Size = 2,
     }
 }
 declare namespace android.test {

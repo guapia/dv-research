@@ -17,14 +17,17 @@ namespace android.test.cartesian {
         public get id():string{
             return Util.HashCode(this.__name);
         }
-        constructor(encoding: Encoding, series: any, index: number) {
+        constructor(encoding: Encoding, series: any, index: number,charttype:ChartType) {
             Debug.assert(encoding != null);
             Debug.assert(series != null);
             Debug.assert(series.data instanceof Array, "Series must be Array");
             this.__data = series.data;
             this.__name = series.name;
             this.__index = index;
-            this.__chartType = Util.asEnum(series.charttype, ChartType);
+            this.__chartType = Util.asEnum(series.charttype, ChartType,null);
+            if(this.__chartType == null){
+                this.__chartType = charttype;
+            }
             this.__encoding = encoding;
             this.__pairs = [];
             for (let key in this.__encoding) {

@@ -70,7 +70,7 @@ namespace android.test.map {
             this.__allSeries = [];
             for (let i = 0; i < series_data.length; ++i) {
                 let seriesitem = series_data[i];
-                let ser: Series = new Series(encoding, seriesitem, i);
+                let ser: Series = new Series(encoding, seriesitem, i,null);
                 if (this.__filter != null && this.__filter.series.indexOf(seriesitem.name) > -1) {
                     ser.enable = true;
                     this.__series.push(ser);

@@ -4,6 +4,7 @@
 namespace android.test.cartesian {
     'use strict';
     import Config = android.test.config.cartesian.Config;
+    import Util = android.graphics.Util;
     export class DataModel {
         private __config:Config;
         private __encoding: Encoding;
@@ -12,8 +13,21 @@ namespace android.test.cartesian {
         private __series: Series[];
         private __allSeries: Series[];
         private __chartTypes: ChartType[] = [];
+        private __chartType:ChartType;
         protected __scalePairs: { series: string[], filed: Field, scale: Scale }[];
         
+        constructor(data: any) {
+            this.__data = data;
+            this.__chartType = Util.asEnum(data.charttype,ChartType,null);
+            if(this.__chartType == null){
+                this.__chartType = ChartType.Bar;
+            }
+            this.__encoding = this._analyseEncoding(this.__data.encoding);
+            this._analyseConfig(this.__data.config);
+            this._analyseFilter(data.filter);
+            this.refresh();
+        }
+
         private _analyseConfig(config:any){
             if(config!= null){
                 this.__config = new Config(config);
@@ -33,7 +47,7 @@ namespace android.test.cartesian {
             this.__allSeries = [];
             for (let i = 0; i < series_data.length; ++i) {
                 let seriesitem = series_data[i];
-                let ser: Series = new Series(encoding, seriesitem, i);
+                let ser: Series = new Series(encoding, seriesitem, i,this.__chartType);
                 if (this.__filter != null && this.__filter.series.indexOf(seriesitem.name) > -1) {
                     ser.enable = true;
                     this.__series.push(ser);
@@ -48,13 +62,7 @@ namespace android.test.cartesian {
 
         }
 
-        constructor(data: any) {
-            this.__data = data;
-            this.__encoding = this._analyseEncoding(this.__data.encoding);
-            this._analyseConfig(this.__data.config);
-            this._analyseFilter(data.filter);
-            this.refresh();
-        }
+     
 
         public refresh() {
             this._analyseSeries(this.__data.series, this.__encoding);

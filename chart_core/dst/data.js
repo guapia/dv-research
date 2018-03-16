@@ -367,6 +367,15 @@ let dataechart = {
         "stack": false,
         "radial": false
     },
+    "config": {
+        "axis": [],
+        "legend": [
+            {
+                "type": "Series",
+                "gravity": "Right"
+            }
+        ]
+    },
     "series": [
         {
             "name": "seriesA",
