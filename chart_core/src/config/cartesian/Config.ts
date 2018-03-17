@@ -9,6 +9,7 @@ namespace android.test.config.cartesian{
         private _axis:AxisConfig[];
         private _legend:LegendConfig[];
         private _plot:ViewConfig;
+        private _itemstyles:{[name:string]:ViewConfig}={};
 
         public get axis():AxisConfig[]{
             return this._axis;
@@ -64,5 +65,6 @@ namespace android.test.config.cartesian{
 
         }
     }
+
     
 }
